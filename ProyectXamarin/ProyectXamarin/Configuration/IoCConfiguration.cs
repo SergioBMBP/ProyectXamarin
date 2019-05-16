@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ProyectXamarin.Configuration
 {
-    class IoCConfiguration
+    public class IoCConfiguration
     {
     }
 }
