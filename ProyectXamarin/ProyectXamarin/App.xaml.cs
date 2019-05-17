@@ -11,7 +11,7 @@ namespace ProyectXamarin
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new Views.ListaArticulos();
         }
 
         protected override void OnStart()
