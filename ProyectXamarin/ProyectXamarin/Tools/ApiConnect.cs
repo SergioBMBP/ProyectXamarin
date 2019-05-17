@@ -13,106 +13,105 @@ namespace ProyectXamarin.Tools
 {
     public class ApiConnect
     {
-    //    private String uriapi;
-    //    private MediaTypeWithQualityHeaderValue headerjson;
+        private String uriapi;
+        private MediaTypeWithQualityHeaderValue headerjson;
 
-    //    public ApiConnect()
-    //    {
-    //        this.uriapi = "https://apiproyectofoto.azurewebsites.net/";
-    //        //this.uriapi = "https://localhost:44305/";
-    //        this.headerjson = new MediaTypeWithQualityHeaderValue("application/json");
-    //    }
-
-
-    //    public async Task<T> CallApi<T>(String peticion, String token)
-    //    {
-    //        using (HttpClient cliente = new HttpClient())
-    //        {
-    //            cliente.BaseAddress = new Uri(this.uriapi);
-    //            cliente.DefaultRequestHeaders.Accept.Clear();
-    //            cliente.DefaultRequestHeaders.Accept.Add(headerjson);
-    //            if (token != null)
-    //            {
-    //                cliente.DefaultRequestHeaders.Add("Authorization", "bearer " + token);
-    //            }
-    //            HttpResponseMessage response = await cliente.GetAsync(peticion);
-    //            if (response.IsSuccessStatusCode)
-    //            {
-    //                T datos = await response.Content.ReadAsAsync<T>();
-    //                return (T)Convert.ChangeType(datos, typeof(T));
-    //            }
-    //            else
-    //            {
-    //                return default(T);
-    //            }
-    //        }
-    //    }
+        public ApiConnect()
+        {
+            this.uriapi = "https://apicopyst9.azurewebsites.net/";
+            //this.uriapi = "https://localhost:44305/";
+            this.headerjson = new MediaTypeWithQualityHeaderValue("application/json");
+        }
 
 
-    //    public async Task CallApiPost(Object obj, String peticion, String token)
-    //    {
-    //        using (HttpClient cliente = new HttpClient())
-    //        {
-    //            cliente.BaseAddress = new Uri(this.uriapi);
-    //            cliente.DefaultRequestHeaders.Accept.Clear();
-    //            cliente.DefaultRequestHeaders.Accept.Add(headerjson);
-    //            if (token != null)
-    //            {
-    //                cliente.DefaultRequestHeaders.Add("Authorization", "bearer " + token);
-    //            }
+        public async Task<T> CallApi<T>(String peticion)
+        {
+            using (HttpClient cliente = new HttpClient())
+            {
+                cliente.BaseAddress = new Uri(this.uriapi);
+                cliente.DefaultRequestHeaders.Accept.Clear();
+                cliente.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-    //            String stringJson = JsonConvert.SerializeObject(obj);
-    //            StringContent content = new StringContent(stringJson, Encoding.UTF8, "application/json");
-    //            HttpResponseMessage responseMessage = await cliente.PostAsync(peticion, content);                
-    //        }
-    //    }
+                HttpResponseMessage response = await cliente.GetAsync(peticion);
+                if (response.IsSuccessStatusCode)
+                {
+                    String json = await response.Content.ReadAsStringAsync();
+                    T datos = JsonConvert.DeserializeObject<T>(json);
+                    return (T)Convert.ChangeType(datos, typeof(T));
+                }
+                else
+                {
+                    return default(T);
+                }
+            }
+        }
 
 
-    //    public async Task ApiDelete(String peticion, String token)
-    //    {
-    //        using (HttpClient cliente = new HttpClient())
-    //        {
-    //            cliente.BaseAddress = new Uri(this.uriapi);
-    //            cliente.DefaultRequestHeaders.Accept.Clear();
-    //            cliente.DefaultRequestHeaders.Accept.Add(headerjson);
+        public async Task CallApiPost(Object obj, String peticion, String token)
+        {
+            using (HttpClient cliente = new HttpClient())
+            {
+                cliente.BaseAddress = new Uri(this.uriapi);
+                cliente.DefaultRequestHeaders.Accept.Clear();
+                cliente.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-    //            if (token != null)
-    //            {
-    //                cliente.DefaultRequestHeaders.Add("Authorization", "bearer " + token);
-    //            }
-    //            HttpResponseMessage responseMessage = await cliente.DeleteAsync(peticion);
-    //        }
-    //    }
+                String jsondoctor = JsonConvert.SerializeObject(obj, Formatting.Indented);
+                byte[] bufferdoctor = Encoding.UTF8.GetBytes(jsondoctor);
 
-    //    public async Task<String> GetToken(String usuario, String password)
-    //    {
-    //        using (HttpClient client = new HttpClient())
-    //        {
-    //            //setup client
-    //            client.BaseAddress = new Uri(this.uriapi);
-    //            client.DefaultRequestHeaders.Accept.Clear();
-    //            client.DefaultRequestHeaders.Accept.Add(headerjson);
+                ByteArrayContent content = new ByteArrayContent(bufferdoctor);
+                content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+                Uri uri = new Uri(this.uriapi + peticion);
 
-    //            USER user = new USER();
-    //            user.Nick = usuario;
-    //            user.Password = password;
-    //            String json = JsonConvert.SerializeObject(user);
+                HttpResponseMessage response = await cliente.PostAsync(uri, content);
+            }
+        }
 
-    //            StringContent content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
-    //            String peticion = "api/Auth/Login";
-    //            HttpResponseMessage response = await client.PostAsync(peticion, content);
-    //            if (response.IsSuccessStatusCode)
-    //            {
-    //                String contenido = await response.Content.ReadAsStringAsync();
-    //                var jObject = JObject.Parse(contenido);
-    //                return jObject.GetValue("response").ToString();
-    //            }
-    //            else
-    //            {
-    //                return null;
-    //            }
-    //        }
-    //    }
+
+        public async Task ApiDelete(String peticion, String token)
+        {
+            using (HttpClient cliente = new HttpClient())
+            {
+                cliente.BaseAddress = new Uri(this.uriapi);
+                cliente.DefaultRequestHeaders.Accept.Clear();
+                cliente.DefaultRequestHeaders.Accept.Add(headerjson);
+
+                if (token != null)
+                {
+                    cliente.DefaultRequestHeaders.Add("Authorization", "bearer " + token);
+                }
+                HttpResponseMessage responseMessage = await cliente.DeleteAsync(peticion);
+            }
+        }
+
+        public async Task<String> GetToken(String usuario, String password)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                //setup client
+                client.BaseAddress = new Uri(this.uriapi);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(headerjson);
+
+                Usuarios user = new Usuarios();
+                user.Nombre = usuario;
+                user.Password = password;
+                String json = JsonConvert.SerializeObject(user);
+
+                StringContent content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+                String peticion = "api/Auth/Login";
+                HttpResponseMessage response = await client.PostAsync(peticion, content);
+                if (response.IsSuccessStatusCode)
+                {
+                    String contenido = await response.Content.ReadAsStringAsync();
+                    var jObject = JObject.Parse(contenido);
+                    return jObject.GetValue("response").ToString();
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
 
 
     }
