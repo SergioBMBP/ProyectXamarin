@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ProyectXamarin.Models
 {
-    public class Usuarios:IUsuarios
+    public class Usuarios
     {
         public int Id { get; set; }
         public string Nombre { get; set; }

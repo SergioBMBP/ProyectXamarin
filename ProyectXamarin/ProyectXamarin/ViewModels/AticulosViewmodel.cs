@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace ProyectXamarin.ViewModels
 {
-    class ViewmodelAticulos:ViewModelBase
+    public class AticulosViewmodel:ViewModelBase
     {
         IRepositoryArticulos repo;
-        public ViewmodelAticulos() {
+        public AticulosViewmodel() {
             this.repo = new RepositoryArticulos();
             Task.Run(async () => {
                 await CargarArticulos();
