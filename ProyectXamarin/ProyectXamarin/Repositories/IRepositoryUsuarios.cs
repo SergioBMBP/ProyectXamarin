@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ProyectXamarin.Interfaces.Repositories
+namespace ProyectXamarin.Repositories
 {
     public interface IRepositoryUsuarios
     {
