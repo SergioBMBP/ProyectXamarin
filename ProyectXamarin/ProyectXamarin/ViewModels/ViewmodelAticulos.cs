@@ -18,16 +18,10 @@ namespace ProyectXamarin.ViewModels
                 await CargarArticulos();
             });
         }
-
-        private async Task  CargarArticulos() {
-            Articulos= new ObservableCollection<Articulos>(await repo.GetArticulos());
-        }
-
-        private ObservableCollection<Articulos> _Articulos;
-        public ObservableCollection<Articulos> Articulos
+        private void cargarArticulos()
         {
-            get { return _Articulos; }
-            set { this._Articulos = value; OnPropertyChanged("Articulos"); }
+            this.repo.GetArticulos();
         }
+      
     }
 }
