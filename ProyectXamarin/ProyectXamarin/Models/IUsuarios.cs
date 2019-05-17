@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ProyectXamarin.Interfaces.Models
+namespace ProyectXamarin.Models
 {
     public interface IUsuarios
     {
