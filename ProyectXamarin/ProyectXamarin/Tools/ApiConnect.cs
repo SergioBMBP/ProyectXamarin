@@ -18,7 +18,7 @@ namespace ProyectXamarin.Tools
 
         public ApiConnect()
         {
-            this.uriapi = "https://apicopyst9.azurewebsites.net/";
+            this.uriapi = "https://apicopycoresgb.azurewebsites.net/";
             //this.uriapi = "https://localhost:44305/";
             this.headerjson = new MediaTypeWithQualityHeaderValue("application/json");
         }

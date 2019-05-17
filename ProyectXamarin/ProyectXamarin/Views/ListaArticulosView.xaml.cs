@@ -1,5 +1,8 @@
-﻿using System;
+﻿using ProyectXamarin.Models;
+using ProyectXamarin.Repositories;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,9 +15,14 @@ namespace ProyectXamarin.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class ListaArticulosView : ContentPage
 	{
-		public ListaArticulosView ()
-		{
-			InitializeComponent ();
-		}
-	}
+    
+
+        public ListaArticulosView()
+        {
+            InitializeComponent();
+            
+        }
+     
+     
+    }
 }
