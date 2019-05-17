@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProyectXamarin.Views.MenuPrincipal"
+                  NavigationPage.HasNavigationBar="False"
+                  >
+    <MasterDetailPage.Master>
+        <ContentPage Title="COPY_ST_9"
+                   BackgroundColor="Gray">
+            <StackLayout Orientation="Vertical">
+                <StackLayout BackgroundColor="CadetBlue" HeightRequest="95">
+                    <Label Text="COPY_ST_9" FontSize="20" VerticalOptions="CenterAndExpand" TextColor="White" HorizontalOptions="Center"/>
+                    <Image HorizontalOptions="FillAndExpand"
+                           HeightRequest="80" Source="champions.png"/>
+                </StackLayout>
+                <ListView x:Name="lsvmenu" RowHeight="60" SeparatorVisibility="None" BackgroundColor="#e8e8e8">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout VerticalOptions="FillAndExpand" Orientation="Horizontal" Padding="20,10,0,10" Spacing="20">
+                                    <Label Text="{Binding Titulo}" FontSize="Medium" VerticalOptions="Center" TextColor="Black"/>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </ContentPage>
+      </MasterDetailPage.Master>
+    <MasterDetailPage.Detail>
+        <NavigationPage></NavigationPage>
+    </MasterDetailPage.Detail>
+</MasterDetailPage>
