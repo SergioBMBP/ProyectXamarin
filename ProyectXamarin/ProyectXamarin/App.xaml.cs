@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProyectXamarin.Views;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -11,7 +12,7 @@ namespace ProyectXamarin
         {
             InitializeComponent();
 
-            MainPage = new Views.ListaArticulos();
+            MainPage = new NavigationPage(new MenuPrincipal());
         }
 
         protected override void OnStart()
