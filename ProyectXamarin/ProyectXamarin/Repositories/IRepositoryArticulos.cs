@@ -9,5 +9,6 @@ namespace ProyectXamarin.Repositories
     public interface IRepositoryArticulos
     {
         Task<List<Articulos>> GetArticulos();
+        Task<Articulos> GetArticulo(int id);
     }
 }
