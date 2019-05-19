@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProyectXamarin.Tools;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,9 +13,13 @@ namespace ProyectXamarin.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class HomeView : ContentPage
 	{
+
 		public HomeView ()
 		{
 			InitializeComponent ();
-		}
+
+            
+
+        }
 	}
 }

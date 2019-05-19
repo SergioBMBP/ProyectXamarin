@@ -18,8 +18,8 @@ namespace ProyectXamarin.Tools
 
         public ApiConnect()
         {
-            this.uriapi = "https://apicopycore2sgb.azurewebsites.net/";
-            //this.uriapi = "https://localhost:44305/";
+            //this.uriapi = "https://apicopycore2sgb.azurewebsites.net/";
+            this.uriapi = "https://apicopycoredvb.azurewebsites.net/";
             this.headerjson = new MediaTypeWithQualityHeaderValue("application/json");
         }
 
@@ -97,7 +97,7 @@ namespace ProyectXamarin.Tools
                 user.Password = password;
                 String json = JsonConvert.SerializeObject(user);
 
-                StringContent content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
                 String peticion = "api/Auth/Login";
                 HttpResponseMessage response = await client.PostAsync(peticion, content);
                 if (response.IsSuccessStatusCode)
