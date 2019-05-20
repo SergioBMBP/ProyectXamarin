@@ -33,10 +33,16 @@ namespace ProyectXamarin.Views
                 Titulo = "Pedidos",
                 PaginaHija = typeof(PedidosView)
             };
+            var page4 = new MasterPageItem()
+            {
+                Titulo = "Iniciar sesión",
+                PaginaHija = typeof(LoginView)
+            };
             menu.Add(page1);
             menu.Add(page2);
             menu.Add(page3);
-            
+            menu.Add(page4);
+
             Detail = new NavigationPage((Page)Activator.CreateInstance(typeof(ListaArticulosView)));
             IsPresented = false;
 

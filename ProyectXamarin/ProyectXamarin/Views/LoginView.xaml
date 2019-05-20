@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:ProyectXamarin.ViewModels"
+             x:Class="ProyectXamarin.Views.LoginView">
+    <ContentPage.BindingContext>
+        <viewmodels:UsuarioViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Inicio de sesión" HorizontalOptions="CenterAndExpand" />
+            <Label Text="Usuario"/>
+            <Entry Text="{Binding Usuario.Nombre}" />
+            <Label Text="Password" />
+            <Entry  Text="{Binding Usuario.Password}" />
+            <Button Text="Iniciar Sesión" Command="{Binding Login}" BackgroundColor="Green" TextColor="White" HorizontalOptions="CenterAndExpand"/>
+        </StackLayout> 
+    </ContentPage.Content>
+</ContentPage>

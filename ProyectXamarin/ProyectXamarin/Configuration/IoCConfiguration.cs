@@ -14,6 +14,7 @@ namespace ProyectXamarin.Configuration
             //Registrar aqui las dependencias
 
             builder.RegisterType<SessionService>().SingleInstance();
+
             //Hasta aqui
             this.Container = builder.Build();
         }
