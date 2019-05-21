@@ -1,9 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ProyectXamarin.Views.MenuPrincipal"
-                  NavigationPage.HasNavigationBar="False"
-                  >
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  xmlns:local="clr-namespace:ProyectXamarin"
+                  BindingContext="{Binding Source={x:Static local:App.Locator}, Path=MasterPageItemViewModel}"
+                  x:Class="ProyectXamarin.Views.MenuPrincipal"
+                  NavigationPage.HasNavigationBar="False">
     <MasterDetailPage.Master>
         <ContentPage Title="COPY_ST_9"
                    BackgroundColor="Gray">
@@ -12,8 +13,12 @@
                     <Label Text="COPY_ST_9" FontSize="20" VerticalOptions="CenterAndExpand" TextColor="White" HorizontalOptions="Center"/>
                     <Image HorizontalOptions="FillAndExpand"
                            HeightRequest="80" Source="champions.png"/>
+                    
                 </StackLayout>
-                <ListView x:Name="lsvmenu" RowHeight="60" SeparatorVisibility="None" BackgroundColor="#e8e8e8">
+                <StackLayout>
+                    <Label Text="{Binding Username}" FontSize="20" TextColor="White" />
+                </StackLayout>
+                <ListView x:Name="lsvmenu" RowHeight="60" SeparatorVisibility="None" BackgroundColor="#e8e8e8" ItemsSource="{Binding MasterPageItems}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>

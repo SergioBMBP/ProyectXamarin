@@ -21,8 +21,16 @@ namespace ProyectXamarin.Tools
 
         public async Task<Usuarios> GetStorageUser()
         {
-            var authUser = await SecureStorage.GetAsync("user");
-            Usuarios usuario = JsonConvert.DeserializeObject<Usuarios>(authUser);
+            Usuarios usuario = null;
+            try
+            {
+                var authUser = await SecureStorage.GetAsync("user");
+                usuario = JsonConvert.DeserializeObject<Usuarios>(authUser);
+            }catch(Exception ex)
+            {
+                
+            }
+            
             return usuario;
         }
 

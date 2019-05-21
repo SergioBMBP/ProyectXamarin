@@ -1,4 +1,5 @@
-﻿using ProyectXamarin.Models;
+﻿using ProyectXamarin.Configuration;
+using ProyectXamarin.Models;
 using ProyectXamarin.Tools;
 using ProyectXamarin.Views;
 using System;
@@ -11,23 +12,30 @@ namespace ProyectXamarin
 {
     public partial class App : Application
     {
-        StorageSession session;
-        ApiConnect connect;
+        StorageSession storage;
+        private static IoCConfiguration _Locator;
+        //UNA PROPIEDAD QUE NOS DEVUELVA UN new IoCConfiguration 
+        // O QUE RECUPERE EL QUE YA TENGAMOS CREADO
+        public static IoCConfiguration Locator
+        {
+            get
+            {
+                return _Locator = _Locator ?? new IoCConfiguration();
+            }
+        }
+
         public App()
         {
             InitializeComponent();
+            
             MainPage = new NavigationPage(new MenuPrincipal());
+            
         }
 
         protected override async void OnStart()
         {
-            this.session = new StorageSession();
-            this.connect = new ApiConnect();
-            String token = await session.GetStorageToken();
-            if(token != null)
-            {
-                //CONTINUARÁ...
-            }
+            storage = new StorageSession();
+            storage.RemoveAllStorage();
         }
 
         protected override void OnSleep()
