@@ -27,6 +27,7 @@ namespace ProyectXamarin.ViewModels
             MessagingCenter.Subscribe<MasterPageItemViewModel>(this, "LOGIN", async (sender) => {
                 await this.CargarMenu();
             });
+
         }
 
         private ObservableCollection<MasterPageItem> _MasterPageItems;
@@ -77,17 +78,26 @@ namespace ProyectXamarin.ViewModels
             if (usuario != null)
             {
                 this.Username = usuario.Nombre;
+                var page4 = new MasterPageItem()
+                {
+                    Titulo = "Cerrar sesión",
+                    PaginaHija = typeof(HomeView)
+                };
+                MasterPageItems.Add(page4);
             }
+
             else
             {
+                this.Username = "";
                 var page4 = new MasterPageItem()
                 {
                     Titulo = "Iniciar sesión",
                     PaginaHija = typeof(LoginView)
                 };
                 MasterPageItems.Add(page4);
-            }
 
+            }
+            
 
 
         }
