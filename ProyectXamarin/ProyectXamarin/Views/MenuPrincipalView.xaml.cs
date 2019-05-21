@@ -13,40 +13,13 @@ namespace ProyectXamarin.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MenuPrincipal : MasterDetailPage
     {
-        public List<MasterPageItem> menu { get; set; }
         public MenuPrincipal()
         {
             InitializeComponent();
-            menu = new List<MasterPageItem>();
-            var page1 = new MasterPageItem()
-            {
-                Titulo = "Home",
-                PaginaHija = typeof(HomeView)
-            };
-            var page2 = new MasterPageItem()
-            {
-                Titulo = "Mostrar Articulos",
-                PaginaHija = typeof(ListaArticulosView)
-            };
-            var page3 = new MasterPageItem()
-            {
-                Titulo = "Pedidos",
-                PaginaHija = typeof(PedidosView)
-            };
-            var page4 = new MasterPageItem()
-            {
-                Titulo = "Iniciar sesión",
-                PaginaHija = typeof(LoginView)
-            };
-            menu.Add(page1);
-            menu.Add(page2);
-            menu.Add(page3);
-            menu.Add(page4);
 
             Detail = new NavigationPage((Page)Activator.CreateInstance(typeof(ListaArticulosView)));
             IsPresented = false;
 
-            this.lsvmenu.ItemsSource = menu;
             this.lsvmenu.ItemSelected += ListView_ItemSelected;
         }
 
