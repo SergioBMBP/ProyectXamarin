@@ -8,7 +8,7 @@
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout>
-            <SearchBar x:Name="barra" Placeholder="buscar ..." SearchCommand="{Binding barrabusqueda}" SearchCommandParameter="{Binding Text, Source={x:Reference barra}}"/>
+            <SearchBar x:Name="barra" Placeholder="buscar ...(All=mostrar todo)" SearchCommand="{Binding barrabusqueda}" SearchCommandParameter="{Binding Text, Source={x:Reference barra}}"/>
             <ListView ItemsSource="{Binding Articulos}" HasUnevenRows="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>

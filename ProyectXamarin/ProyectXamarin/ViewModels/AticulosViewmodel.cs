@@ -38,7 +38,12 @@ namespace ProyectXamarin.ViewModels
             get {
                 return new Command(async(x)=> {
                     String buscar = x.ToString();
-                    this.Articulos = new ObservableCollection<Articulos>(await repo.GetArticulos(buscar));
+                    if (buscar=="All") {
+                        this.Articulos = new ObservableCollection<Articulos>(await repo.GetArticulos());
+                    } else {
+                        this.Articulos = new ObservableCollection<Articulos>(await repo.GetArticulos(buscar));
+                    }
+                   
                 });
             }
         }
