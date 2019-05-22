@@ -5,6 +5,9 @@
                   BindingContext="{Binding Source={x:Static local:App.Locator}, Path=MasterPageItemViewModel}"
                   x:Class="ProyectXamarin.Views.MenuPrincipal"
                   NavigationPage.HasNavigationBar="False">
+    <MasterDetailPage.ToolbarItems>
+        <ToolbarItem Icon="carritocompra.png" Command="{Binding GoCesta}" />
+    </MasterDetailPage.ToolbarItems>
     <MasterDetailPage.Master>
         <ContentPage Title="COPY_ST_9"
                    BackgroundColor="Gray">

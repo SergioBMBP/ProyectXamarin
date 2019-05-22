@@ -98,8 +98,28 @@ namespace ProyectXamarin.ViewModels
 
             }
             
+        }
 
+        public Command GoCesta
+        {
+            get
+            {
+                return new Command(async () =>
+                {
+                    Usuarios usuario = await this.session.GetStorageUser();
+                    if(usuario != null)
+                    {
+                        PedidosView view = new PedidosView();
+                        await App.Current.MainPage.Navigation.PushModalAsync(view);
+                    } else
+                    {
+                        LoginView view = new LoginView();
+                        await App.Current.MainPage.Navigation.PushModalAsync(view);
+                    }
+                    
 
+                });
+            }
         }
 
     }

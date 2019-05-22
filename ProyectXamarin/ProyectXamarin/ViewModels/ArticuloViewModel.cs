@@ -17,8 +17,6 @@ namespace ProyectXamarin.ViewModels
             
         }
 
-        
-
         private Articulos _Articulo;
         public Articulos Articulo
         {
