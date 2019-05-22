@@ -29,7 +29,7 @@ namespace ProyectXamarin.Repositories
 
         public async Task<List<Articulos>> GetArticulos(String marca)
         {
-            List<Articulos> articulos = await this.connect.CallApi<List<Articulos>>("api/Articulos/"+marca);
+            List<Articulos> articulos = await this.connect.CallApi<List<Articulos>>("api/ArticulosMarca/"+marca);
             return articulos;
         }
     }
