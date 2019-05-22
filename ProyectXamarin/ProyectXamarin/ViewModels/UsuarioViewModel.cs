@@ -46,7 +46,10 @@ namespace ProyectXamarin.ViewModels
 
                         Usuarios userStoraged = await this.session.GetStorageUser();
                         String t = await this.session.GetStorageToken();
-                        var flag0 = 0;
+                        
+                        MessagingCenter.Send<MasterPageItemViewModel>(App.Locator.MasterPageItemViewModel, "LOGIN");
+
+                        await Application.Current.MainPage.Navigation.PopModalAsync();
                     }
 
                 });

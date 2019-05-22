@@ -1,4 +1,6 @@
 ﻿using ProyectXamarin.Models;
+using ProyectXamarin.Tools;
+using ProyectXamarin.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,50 +15,39 @@ namespace ProyectXamarin.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MenuPrincipal : MasterDetailPage
     {
-        public List<MasterPageItem> menu { get; set; }
         public MenuPrincipal()
         {
             InitializeComponent();
-            menu = new List<MasterPageItem>();
-            var page1 = new MasterPageItem()
-            {
-                Titulo = "Home",
-                PaginaHija = typeof(HomeView)
-            };
-            var page2 = new MasterPageItem()
-            {
-                Titulo = "Mostrar Articulos",
-                PaginaHija = typeof(ListaArticulosView)
-            };
-            var page3 = new MasterPageItem()
-            {
-                Titulo = "Pedidos",
-                PaginaHija = typeof(PedidosView)
-            };
-            var page4 = new MasterPageItem()
-            {
-                Titulo = "Iniciar sesión",
-                PaginaHija = typeof(LoginView)
-            };
-            menu.Add(page1);
-            menu.Add(page2);
-            menu.Add(page3);
-            menu.Add(page4);
 
             Detail = new NavigationPage((Page)Activator.CreateInstance(typeof(ListaArticulosView)));
             IsPresented = false;
 
-            this.lsvmenu.ItemsSource = menu;
             this.lsvmenu.ItemSelected += ListView_ItemSelected;
         }
 
-        private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        private async void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             var item = (MasterPageItem)e.SelectedItem;
             Type page = item.PaginaHija;
+            if (item.PaginaHija == typeof(LoginView))
+            {
+                LoginView view = new LoginView();
+                await Application.Current.MainPage.Navigation.PushModalAsync(view);
+            }
+            else if (item.Titulo == "Cerrar sesión" && item.PaginaHija == typeof(HomeView)) {
+                StorageSession session = new StorageSession();
+                session.RemoveAllStorage();
+                MessagingCenter.Send<MasterPageItemViewModel>(App.Locator.MasterPageItemViewModel, "LOGIN");
 
-            Detail = new NavigationPage((Page)Activator.CreateInstance(page));
-            IsPresented = false;
+                Detail = new NavigationPage((Page)Activator.CreateInstance(page));
+                IsPresented = false;
+            }
+            else
+            {
+                Detail = new NavigationPage((Page)Activator.CreateInstance(page));
+                IsPresented = false;
+            }
+            
 
 
         }
