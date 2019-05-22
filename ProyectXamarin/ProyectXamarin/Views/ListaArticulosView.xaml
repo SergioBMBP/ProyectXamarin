@@ -8,13 +8,35 @@
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout>
+            <SearchBar x:Name="barra" Placeholder="buscar ...(All=mostrar todo)" SearchCommand="{Binding barrabusqueda}" SearchCommandParameter="{Binding Text, Source={x:Reference barra}}"/>
             <ListView ItemsSource="{Binding Articulos}" HasUnevenRows="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <ViewCell Height="150">
+                        <ViewCell Height="60">
                             <StackLayout>
-                                <Label Text="{Binding Nombre}"/>
-                                <Image HeightRequest="100" Source="{Binding Imagen}"/>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="25*"/>
+                                        <ColumnDefinition Width="25*"/>
+                                        <ColumnDefinition Width="30*"/>
+                                        <ColumnDefinition Width="20*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Text="{Binding Nombre}" HorizontalOptions="CenterAndExpand" Grid.Row="0" Grid.ColumnSpan="2"  Grid.Column="1"/>
+                                    <Label Text="{Binding Precio}" HorizontalOptions="End" Grid.Row="1"  Grid.Column="1"/>
+                                    <Label Text="€" Grid.Row="1"  Grid.Column="2"/>
+                                    <Image HeightRequest="100" Source="{Binding Imagen}" Grid.Row="0" Grid.RowSpan="2" Grid.Column="0"/>
+
+                                    <Image Source="CestaDeLaCompra.png" Grid.Row="0" Grid.RowSpan="2" Grid.Column="3">
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer Command="" CommandParameter="{Binding .}"/>
+                                        </Image.GestureRecognizers>
+                                    </Image>
+                                </Grid>
+                                
 
                             </StackLayout>
                         </ViewCell>

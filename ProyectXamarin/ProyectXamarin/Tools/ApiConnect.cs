@@ -18,8 +18,8 @@ namespace ProyectXamarin.Tools
 
         public ApiConnect()
         {
-            //this.uriapi = "https://apicopycore2sgb.azurewebsites.net/";
-            this.uriapi = "https://apicopycoredvb.azurewebsites.net/";
+            this.uriapi = "https://apicopycore.azurewebsites.net";
+           // this.uriapi = "https://apicopycoredvb.azurewebsites.net/";
             this.headerjson = new MediaTypeWithQualityHeaderValue("application/json");
         }
 

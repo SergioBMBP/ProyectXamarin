@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace ProyectXamarin.ViewModels
 {
@@ -33,5 +34,18 @@ namespace ProyectXamarin.ViewModels
             set { this._Articulos = value; OnPropertyChanged("Articulos"); }
         }
 
+        public Command barrabusqueda {
+            get {
+                return new Command(async(x)=> {
+                    String buscar = x.ToString();
+                    if (buscar=="All") {
+                        this.Articulos = new ObservableCollection<Articulos>(await repo.GetArticulos());
+                    } else {
+                        this.Articulos = new ObservableCollection<Articulos>(await repo.GetArticulos(buscar));
+                    }
+                   
+                });
+            }
+        }
     }
 }

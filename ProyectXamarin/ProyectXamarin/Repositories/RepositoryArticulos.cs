@@ -26,5 +26,11 @@ namespace ProyectXamarin.Repositories
             Articulos  articulo = await this.connect.CallApi<Articulos>("api/Articulos/"+id);
             return articulo;
         }
+
+        public async Task<List<Articulos>> GetArticulos(String marca)
+        {
+            List<Articulos> articulos = await this.connect.CallApi<List<Articulos>>("api/ArticulosMarca/"+marca);
+            return articulos;
+        }
     }
 }
