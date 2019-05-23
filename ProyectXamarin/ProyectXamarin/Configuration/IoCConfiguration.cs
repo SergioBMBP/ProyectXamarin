@@ -17,7 +17,7 @@ namespace ProyectXamarin.Configuration
             builder.RegisterType<SessionService>().SingleInstance();
             builder.RegisterType<MasterPageItemViewModel>();
             builder.RegisterType<UsuarioViewModel>();
-            
+            builder.RegisterType<AticulosViewmodel>();
 
 
             //Hasta aqui
@@ -29,6 +29,10 @@ namespace ProyectXamarin.Configuration
         public SessionService SessionService
         {
             get { return this.Container.Resolve<SessionService>(); }
+        }
+        public AticulosViewmodel ArticulosViewModel
+        {
+            get { return this.Container.Resolve<AticulosViewmodel>(); }
         }
 
         public UsuarioViewModel UsuarioViewModel
