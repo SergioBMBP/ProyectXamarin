@@ -1,10 +1,21 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:Xamarin.Forms;assembly=Xamarin.Forms.CarouselView"
+             xmlns:local="clr-namespace:ProyectXamarin"
+              BindingContext="{Binding Source={x:Static local:App.Locator}, Path=ArticulosViewModel}"
              x:Class="ProyectXamarin.Views.HomeView">
   <ContentPage.Content>
       <StackLayout>
-          <Label Text="Home" />
+            <controls:CarouselView ItemsSource="{Binding Articulos}">
+                <controls:CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Label Text="{Binding Nombre}"/>
+                        </StackLayout>
+                    </DataTemplate>
+                </controls:CarouselView.ItemTemplate>
+            </controls:CarouselView>
       </StackLayout>
   </ContentPage.Content>
 </ContentPage>
