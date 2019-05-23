@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ProyectXamarin.Models
 {
-    public class Pedidos :IPedidos
+    public class Pedidos 
     {
         public int Id_Pedido { get; set; }
         public string Producto { get; set; }
