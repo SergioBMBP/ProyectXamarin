@@ -35,7 +35,7 @@ namespace ProyectXamarin.ViewModels
             {
                 return new Command(async () =>
                 {
-                    this.repo.
+                    //this.repo.
                 });
             }
         }
