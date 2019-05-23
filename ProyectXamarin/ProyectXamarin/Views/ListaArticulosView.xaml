@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:viewmodel="clr-namespace:ProyectXamarin.ViewModels"
-             x:Class="ProyectXamarin.Views.ListaArticulosView">
-    <ContentPage.BindingContext>
-        <viewmodel:AticulosViewmodel/>
-    </ContentPage.BindingContext>
+             xmlns:local="clr-namespace:ProyectXamarin"
+              BindingContext="{Binding Source={x:Static local:App.Locator}, Path=ArticulosViewModel}"
+              x:Name="VistaListaArticulos"
+              x:Class="ProyectXamarin.Views.ListaArticulosView">
+  
     <ContentPage.Content>
         <StackLayout>
             <SearchBar x:Name="barra" Placeholder="buscar ...(All=mostrar todo)" SearchCommand="{Binding barrabusqueda}" SearchCommandParameter="{Binding Text, Source={x:Reference barra}}"/>
@@ -32,7 +32,7 @@
 
                                     <Image Source="CestaDeLaCompra.png" Grid.Row="0" Grid.RowSpan="2" Grid.Column="3">
                                         <Image.GestureRecognizers>
-                                            <TapGestureRecognizer Command="" CommandParameter="{Binding .}"/>
+                                            <TapGestureRecognizer CommandParameter="{Binding .}" Command="{Binding BindingContext.MostrarDetallesArticulo,Source={x:Reference VistaListaArticulos}}"/>
                                         </Image.GestureRecognizers>
                                     </Image>
                                 </Grid>
