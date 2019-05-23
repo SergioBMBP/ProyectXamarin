@@ -11,8 +11,12 @@
                 <controls:CarouselView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout>
-                            <Label Text="{Binding Nombre}"/>
+                            
+                            <Frame HasShadow="True">
+                                <Label Text="{Binding Nombre}"/>
+                            </Frame>
                         </StackLayout>
+                        
                     </DataTemplate>
                 </controls:CarouselView.ItemTemplate>
             </controls:CarouselView>
