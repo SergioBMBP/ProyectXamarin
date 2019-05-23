@@ -7,13 +7,12 @@ namespace ProyectXamarin.Services
 {
     public class SessionService
     {
-        public String SesionToken { get; set; }
-        public Usuarios User { get; set; }
         public SessionService()
         {            
-            this.User = new Usuarios();
+            this.Cesta = new List<Articulos>();
         }
 
+        public List<Articulos> Cesta { get; set; }
        
     }
 }
