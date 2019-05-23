@@ -1,6 +1,7 @@
 ﻿using ProyectXamarin.Base;
 using ProyectXamarin.Models;
 using ProyectXamarin.Repositories;
+using ProyectXamarin.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -44,6 +45,25 @@ namespace ProyectXamarin.ViewModels
                         this.Articulos = new ObservableCollection<Articulos>(await repo.GetArticulos(buscar));
                     }
                    
+                });
+            }
+        }
+
+        public Command MostrarDetallesArticulo
+        {
+            get
+            {
+                return new Command(async (articulo) =>
+                {
+                    DetallesArticulosView view = new DetallesArticulosView();
+                    ArticuloViewModel viewmodel = new ArticuloViewModel();
+
+                    viewmodel.Articulo = articulo as Articulos;
+                    view.BindingContext = viewmodel;
+
+                    await Application.Current.MainPage.Navigation
+                    .PushModalAsync(view);
+                 
                 });
             }
         }
