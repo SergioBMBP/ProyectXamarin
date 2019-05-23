@@ -9,10 +9,10 @@
     <ContentPage.Content>
         <StackLayout>
             <SearchBar x:Name="barra" Placeholder="buscar ...(All=mostrar todo)" SearchCommand="{Binding barrabusqueda}" SearchCommandParameter="{Binding Text, Source={x:Reference barra}}"/>
-            <ListView ItemsSource="{Binding Articulos}" HasUnevenRows="True">
+            <ListView ItemsSource="{Binding Articulos}" HasUnevenRows="true">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <ViewCell Height="60">
+                        <ViewCell Height="60" >
                             <StackLayout>
                                 <Grid>
                                     <Grid.RowDefinitions>

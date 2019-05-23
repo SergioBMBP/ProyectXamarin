@@ -9,5 +9,6 @@ namespace ProyectXamarin.Repositories
     public interface IRepositoryPedidos
     {
         Task<List<Pedidos>> GetPedidos();
+        Task RealizarPedido(List<Articulos> articulos, int idPedido);
     }
 }
