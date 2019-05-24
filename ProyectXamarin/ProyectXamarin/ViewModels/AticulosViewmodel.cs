@@ -23,6 +23,10 @@ namespace ProyectXamarin.ViewModels
         private async Task CargarArticulos()
         {
             Articulos = new ObservableCollection<Articulos>(await repo.GetArticulos());
+            //lo cargamos aqui los ultimos
+            LastArticulos= new ObservableCollection<Articulos>(await repo.GetLastArticulos());
+            //aqui por la marca canon
+            ArticulosCanon = new ObservableCollection<Articulos>(await repo.GetArticulos("Canon"));
         }
         private void cargarArticulos()
         {
@@ -66,6 +70,20 @@ namespace ProyectXamarin.ViewModels
                  
                 });
             }
+        }
+
+        //ultimos Articulos añadidos
+        private ObservableCollection<Articulos> _LastArticulos;
+        public ObservableCollection<Articulos> LastArticulos
+        {
+            get { return _LastArticulos; }
+            set { this._LastArticulos = value; OnPropertyChanged("LastArticulos"); }
+        }
+        private ObservableCollection<Articulos> _ArticulosCanon;
+        public ObservableCollection<Articulos> ArticulosCanon
+        {
+            get { return _ArticulosCanon; }
+            set { this._ArticulosCanon = value; OnPropertyChanged("ArticulosCanon"); }
         }
     }
 }

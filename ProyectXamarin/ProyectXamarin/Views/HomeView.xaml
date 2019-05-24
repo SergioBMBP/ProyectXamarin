@@ -5,21 +5,71 @@
              xmlns:local="clr-namespace:ProyectXamarin"
               BindingContext="{Binding Source={x:Static local:App.Locator}, Path=ArticulosViewModel}"
              x:Class="ProyectXamarin.Views.HomeView">
-  <ContentPage.Content>
-      <StackLayout>
-            <controls:CarouselView ItemsSource="{Binding Articulos}">
-                <controls:CarouselView.ItemTemplate>
-                    <DataTemplate>
-                        <StackLayout>
-                            
-                            <Frame HasShadow="True">
-                                <Label Text="{Binding Nombre}"/>
-                            </Frame>
-                        </StackLayout>
-                        
-                    </DataTemplate>
-                </controls:CarouselView.ItemTemplate>
-            </controls:CarouselView>
-      </StackLayout>
-  </ContentPage.Content>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <controls:CarouselView ItemsSource="{Binding LastArticulos}" HeightRequest="250">
+                    <controls:CarouselView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout>
+
+                                <Frame HasShadow="True">
+                                    <StackLayout>
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="80*" />
+                                                <RowDefinition Height="20*" />
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Image Source="{Binding Imagen}" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0"/>
+                                            <Label Text="{Binding Nombre}" Grid.Column="0"  Grid.Row="1"/>
+                                            <Label Text="Precio: " Grid.Column="1"  Grid.Row="1"/>
+                                            <Label Text="{Binding Precio}" Grid.Column="2"  Grid.Row="1"/>
+                                        </Grid>
+
+                                    </StackLayout>
+
+                                </Frame>
+                            </StackLayout>
+
+                        </DataTemplate>
+                    </controls:CarouselView.ItemTemplate>
+                </controls:CarouselView>
+                <Label Text="Articulos Canon"/>
+                <controls:CarouselView ItemsSource="{Binding ArticulosCanon}" HeightRequest="250">
+                    <controls:CarouselView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout>
+
+                                <Frame HasShadow="True">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="80*" />
+                                            <RowDefinition Height="20*" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Image Source="{Binding Imagen}" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0"/>
+                                        <Label Text="{Binding Nombre}" Grid.Column="0"  Grid.Row="1"/>
+                                        <Label Text="Precio: " Grid.Column="1"  Grid.Row="1"/>
+                                        <Label Text="{Binding Precio}" Grid.Column="2"  Grid.Row="1"/>
+                                    </Grid>
+
+                                </Frame>
+                            </StackLayout>
+
+                        </DataTemplate>
+                    </controls:CarouselView.ItemTemplate>
+                </controls:CarouselView>
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
 </ContentPage>

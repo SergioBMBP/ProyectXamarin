@@ -32,5 +32,17 @@ namespace ProyectXamarin.Repositories
             List<Articulos> articulos = await this.connect.CallApi<List<Articulos>>("api/ArticulosMarca/"+marca);
             return articulos;
         }
+        public async Task<List<Articulos>> GetLastArticulos()
+        {
+            List<Articulos> articulos = await this.connect.CallApi<List<Articulos>>("api/Articulos");
+            int a = articulos.Count - 1;
+            List<Articulos> L=new List<Articulos>();
+            for (int i = 0; i < 10; i++)
+            {
+                L.Add(articulos[a]);
+                a--;
+            }
+            return L;
+        }
     }
 }
