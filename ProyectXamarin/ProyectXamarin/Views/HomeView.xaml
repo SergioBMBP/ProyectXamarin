@@ -1,10 +1,89 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:Xamarin.Forms;assembly=Xamarin.Forms.CarouselView"
+             xmlns:local="clr-namespace:ProyectXamarin"
+              BindingContext="{Binding Source={x:Static local:App.Locator}, Path=ArticulosViewModel}"
+             BackgroundColor="AliceBlue"
+              x:Name="VistaHome"
              x:Class="ProyectXamarin.Views.HomeView">
-  <ContentPage.Content>
-      <StackLayout>
-          <Label Text="Home" />
-      </StackLayout>
-  </ContentPage.Content>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout >
+                <Label FontSize="Large" TextColor="Black"  FontAttributes="Bold" Text="Ultimos Articulos añadidos"/>
+                <controls:CarouselView ItemsSource="{Binding LastArticulos}" HeightRequest="250" x:Name="lastArticulos">
+                    <controls:CarouselView.ItemTemplate >
+                        <DataTemplate >
+                            <StackLayout>
+
+                                <Frame HasShadow="True" >
+                                    <StackLayout >
+                                        <Grid>
+                                            <Grid.GestureRecognizers>
+                                                <TapGestureRecognizer CommandParameter="{Binding .}" Command="{Binding BindingContext.MostrarDetallesArticulo,Source={x:Reference VistaHome}}"/>
+                                            </Grid.GestureRecognizers>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="80*" />
+                                                <RowDefinition Height="20*" />
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="50*"/>
+                                                <ColumnDefinition Width="15*"/>
+                                                <ColumnDefinition Width="15*"/>
+                                                <ColumnDefinition Width="20*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Image Source="{Binding Imagen}" Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="0" HeightRequest="200" />
+                                            <Label TextColor="Black" Text="{Binding Nombre}" Grid.Column="0"  Grid.Row="1"/>
+                                            <Label TextColor="Black" Text="Precio: " Grid.Column="1"  Grid.Row="1"/>
+                                            <Label TextColor="Black" Text="{Binding Precio}" HorizontalOptions="End" Grid.Column="2"  Grid.Row="1"/>
+                                            <Label TextColor="Black" Text="€" Grid.Column="3"  Grid.Row="1"/>
+                                        </Grid>
+
+                                    </StackLayout>
+
+                                </Frame>
+                            </StackLayout>
+
+                        </DataTemplate>
+                    </controls:CarouselView.ItemTemplate>
+                </controls:CarouselView>
+                <Button BackgroundColor="AliceBlue" Text="Mas Productos" x:Name="btnmore"/>
+                <Label  FontSize="Large" FontAttributes="Bold" TextColor="Black" Text="Articulos Canon"/>
+                <controls:CarouselView ItemsSource="{Binding ArticulosCanon}" HeightRequest="250">
+                    <controls:CarouselView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout>
+
+                                <Frame HasShadow="True">
+                                    <Grid>
+                                        <Grid.GestureRecognizers>
+                                            <TapGestureRecognizer CommandParameter="{Binding .}" Command="{Binding BindingContext.MostrarDetallesArticulo,Source={x:Reference VistaHome}}"/>
+                                        </Grid.GestureRecognizers>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="80*" />
+                                            <RowDefinition Height="20*" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="50*"/>
+                                            <ColumnDefinition Width="15*"/>
+                                            <ColumnDefinition Width="15*"/>
+                                            <ColumnDefinition Width="20*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Image Source="{Binding Imagen}" Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="0" HeightRequest="200" />
+                                        <Label TextColor="Black" Text="{Binding Nombre}" Grid.Column="0"  Grid.Row="1"/>
+                                        <Label TextColor="Black" Text="Precio: " Grid.Column="1"  Grid.Row="1"/>
+                                        <Label TextColor="Black" Text="{Binding Precio}" HorizontalOptions="End" Grid.Column="2"  Grid.Row="1"/>
+                                        <Label TextColor="Black" Text="€" Grid.Column="3"  Grid.Row="1"/>
+                                    </Grid>
+
+                                </Frame>
+                            </StackLayout>
+
+                        </DataTemplate>
+                    </controls:CarouselView.ItemTemplate>
+                </controls:CarouselView>
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
 </ContentPage>
