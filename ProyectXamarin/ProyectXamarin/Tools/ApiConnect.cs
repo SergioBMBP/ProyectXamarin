@@ -18,7 +18,7 @@ namespace ProyectXamarin.Tools
 
         public ApiConnect()
         {
-            this.uriapi = "https://apicopycore.azurewebsites.net";
+            this.uriapi = "https://apicopycore.azurewebsites.net/";
            // this.uriapi = "https://apicopycoredvb.azurewebsites.net/";
             this.headerjson = new MediaTypeWithQualityHeaderValue("application/json");
         }
@@ -55,11 +55,20 @@ namespace ProyectXamarin.Tools
                 cliente.DefaultRequestHeaders.Accept.Clear();
                 cliente.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                String jsondoctor = JsonConvert.SerializeObject(obj, Formatting.Indented);
-                byte[] bufferdoctor = Encoding.UTF8.GetBytes(jsondoctor);
+                
 
-                ByteArrayContent content = new ByteArrayContent(bufferdoctor);
+                String json = JsonConvert.SerializeObject(obj, Formatting.Indented);
+                byte[] arrayBuffer = Encoding.UTF8.GetBytes(json);
+
+                ByteArrayContent content = new ByteArrayContent(arrayBuffer);
                 content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+                if (token != null)
+                {
+                    cliente.DefaultRequestHeaders.Add("Authorization", "bearer " + token);
+                    
+                }
+
+
                 Uri uri = new Uri(this.uriapi + peticion);
 
                 HttpResponseMessage response = await cliente.PostAsync(uri, content);

@@ -14,12 +14,11 @@ namespace ProyectXamarin.ViewModels
     {
         IRepositoryPedidos repo;
         
-
-        public CestaViewModel(IRepositoryPedidos repo)
+        public CestaViewModel()
         {
             List<Articulos> lista = App.Locator.SessionService.Cesta;
             this.Cesta = new ObservableCollection<Articulos>(lista);
-            this.repo = repo;
+            this.repo = new RepositoryPedidos();
         }
 
         private ObservableCollection<Articulos> _Cesta;
@@ -35,7 +34,12 @@ namespace ProyectXamarin.ViewModels
             {
                 return new Command(async () =>
                 {
-                    //this.repo.
+                    List<Pedidos> pedidos = await this.repo.GetPedidos();
+                    int idPedido = pedidos.Count + 1;
+
+                    List<Articulos> lista = new List<Articulos>(Cesta);
+                    await this.repo.RealizarPedido(lista, idPedido);
+
                 });
             }
         }

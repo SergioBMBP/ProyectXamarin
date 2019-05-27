@@ -109,7 +109,7 @@ namespace ProyectXamarin.ViewModels
                     Usuarios usuario = await this.session.GetStorageUser();
                     if(usuario != null)
                     {
-                        PedidosView view = new PedidosView();
+                        CestaView view = new CestaView();
                         await App.Current.MainPage.Navigation.PushModalAsync(view);
                     } else
                     {
