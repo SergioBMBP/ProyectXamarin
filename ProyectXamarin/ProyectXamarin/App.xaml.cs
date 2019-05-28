@@ -34,8 +34,7 @@ namespace ProyectXamarin
 
         protected override async void OnStart()
         {
-            storage = new StorageSession();
-            storage.RemoveAllStorage();
+
         }
 
         protected override void OnSleep()

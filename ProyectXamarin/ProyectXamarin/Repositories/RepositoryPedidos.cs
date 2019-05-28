@@ -18,7 +18,7 @@ namespace ProyectXamarin.Repositories
 
         }
         public async Task<List<Pedidos>> GetPedidos() {
-            List<Pedidos> articulos = await this.connect.CallApi<List<Pedidos>>("api/Articulos");
+            List<Pedidos> articulos = await this.connect.CallApi<List<Pedidos>>("api/Articulos", null);
             return articulos;
         }
 
@@ -40,5 +40,14 @@ namespace ProyectXamarin.Repositories
                 await this.connect.CallApiPost(pedido, "api/InsertarPedido", token);
             }
         }
+
+        public async Task<int> GetMaximoPedido()
+        {
+            String token = await this.session.GetStorageToken();
+            int num = await this.connect.CallApi<int>("api/GetMaxPedido",token);
+            return num;
+        }
+
+
     }
 }

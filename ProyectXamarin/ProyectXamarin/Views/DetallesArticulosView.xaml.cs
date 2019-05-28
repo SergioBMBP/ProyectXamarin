@@ -15,6 +15,12 @@ namespace ProyectXamarin.Views
         public DetallesArticulosView()
         {
             InitializeComponent();
+            controlstepper1.ValueChanged += OnValueChanged1;
+        }
+        private void OnValueChanged1(object sender, ValueChangedEventArgs e)
+        {
+
+           
         }
     }
 }

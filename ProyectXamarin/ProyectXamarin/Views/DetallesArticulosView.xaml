@@ -9,7 +9,8 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="180"/>
             <RowDefinition Height="50"/>
-            <RowDefinition Height="150"/>
+            <RowDefinition Height="200"/>
+            <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
 
 
@@ -41,8 +42,14 @@
         </Grid>
         <Grid Grid.Row="3" >
             <StackLayout  Orientation="Horizontal">
-                <Button Text="Añadir al carrito" HorizontalOptions="CenterAndExpand"
-                          Command="{Binding InsertarPedido}"/>
+                <Stepper x:Name="controlstepper1" Increment="1" Minimum="1" Maximum="{Binding Articulo.Cantidad}" Value="{Binding CantidadCesta}" VerticalOptions="CenterAndExpand"/>
+                <Label Text="{Binding CantidadCesta}" FontSize="Large" VerticalOptions="CenterAndExpand"/>
+            </StackLayout>
+        </Grid>
+        <Grid Grid.Row="4" >
+            <StackLayout  Orientation="Horizontal">
+                <Button Text="Añadir al carrito" Command="{Binding AddToCesta}" BackgroundColor="Green" TextColor="White" HorizontalOptions="CenterAndExpand"/>
+              
             </StackLayout>
         </Grid>
 
