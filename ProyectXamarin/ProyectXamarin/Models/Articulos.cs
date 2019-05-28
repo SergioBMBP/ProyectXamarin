@@ -14,5 +14,6 @@ namespace ProyectXamarin.Models
         public string Tipo { get; set; }
         public string Imagen { get; set; }
         public string Marca { get; set; }
+        public int CantidadCesta { get; set; }
     }
 }

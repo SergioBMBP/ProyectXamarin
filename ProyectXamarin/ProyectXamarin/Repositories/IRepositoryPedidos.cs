@@ -10,5 +10,6 @@ namespace ProyectXamarin.Repositories
     {
         Task<List<Pedidos>> GetPedidos();
         Task RealizarPedido(List<Articulos> articulos, int idPedido);
+       Task<int> GetMaximoPedido();
     }
 }

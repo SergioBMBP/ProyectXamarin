@@ -17,7 +17,7 @@ namespace ProyectXamarin.Repositories
 
         public async Task<Usuarios> GetUsuario(String nombre, String password)
         {
-            Usuarios usuario = await this.connect.CallApi<Usuarios>("api/GetUsuario/" + nombre + "/" + password);
+            Usuarios usuario = await this.connect.CallApi<Usuarios>("api/GetUsuario/" + nombre + "/" + password, null);
             return usuario;
         }
 
