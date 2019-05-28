@@ -34,9 +34,9 @@ namespace ProyectXamarin.ViewModels
             {
                 return new Command(async () =>
                 {
-                    List<Pedidos> pedidos = await this.repo.GetPedidos();
-                    int idPedido = pedidos.Count + 1;
 
+                    int idPedido = await this.repo.GetMaximoPedido();
+                    
                     List<Articulos> lista = new List<Articulos>(Cesta);
                     await this.repo.RealizarPedido(lista, idPedido);
 

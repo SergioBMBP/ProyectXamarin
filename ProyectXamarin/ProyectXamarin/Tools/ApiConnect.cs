@@ -19,18 +19,22 @@ namespace ProyectXamarin.Tools
         public ApiConnect()
         {
             this.uriapi = "https://apicopycore.azurewebsites.net/";
-           // this.uriapi = "https://apicopycoredvb.azurewebsites.net/";
+           //this.uriapi = "https://apipruebadvb.azurewebsites.net/";
             this.headerjson = new MediaTypeWithQualityHeaderValue("application/json");
         }
 
 
-        public async Task<T> CallApi<T>(String peticion)
+        public async Task<T> CallApi<T>(String peticion, String token)
         {
             using (HttpClient cliente = new HttpClient())
             {
                 cliente.BaseAddress = new Uri(this.uriapi);
                 cliente.DefaultRequestHeaders.Accept.Clear();
                 cliente.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                if(token != null)
+                {
+                    cliente.DefaultRequestHeaders.Add("Authorization", "bearer " + token);
+                }
 
                 HttpResponseMessage response = await cliente.GetAsync(peticion);
                 if (response.IsSuccessStatusCode)
@@ -49,30 +53,48 @@ namespace ProyectXamarin.Tools
 
         public async Task CallApiPost(Object obj, String peticion, String token)
         {
-            using (HttpClient cliente = new HttpClient())
-            {
-                cliente.BaseAddress = new Uri(this.uriapi);
-                cliente.DefaultRequestHeaders.Accept.Clear();
-                cliente.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-                
-
-                String json = JsonConvert.SerializeObject(obj, Formatting.Indented);
-                byte[] arrayBuffer = Encoding.UTF8.GetBytes(json);
-
-                ByteArrayContent content = new ByteArrayContent(arrayBuffer);
-                content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-                if (token != null)
-                {
-                    cliente.DefaultRequestHeaders.Add("Authorization", "bearer " + token);
-                    
-                }
+            //using (HttpClient cliente = new HttpClient())
+            //{
+            //    cliente.BaseAddress = new Uri(this.uriapi);
+            //    cliente.DefaultRequestHeaders.Accept.Clear();
+            //    cliente.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
 
-                Uri uri = new Uri(this.uriapi + peticion);
 
-                HttpResponseMessage response = await cliente.PostAsync(uri, content);
-            }
+            //    String json = JsonConvert.SerializeObject(obj, Formatting.Indented);
+            //    byte[] arrayBuffer = Encoding.UTF8.GetBytes(json);
+
+            //    ByteArrayContent content = new ByteArrayContent(arrayBuffer);
+            //    content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+            //    if (token != null)
+            //    {
+            //        cliente.DefaultRequestHeaders.Add("Authorization", "bearer " + token);
+
+            //    }
+
+
+            //    Uri uri = new Uri(this.uriapi + peticion);
+
+            //    HttpResponseMessage response = await cliente.PostAsync(uri, content);
+            //}
+
+            HttpClient client = new HttpClient();
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            client.DefaultRequestHeaders.Add("Authorization", "bearer " + token);
+
+            String jsondoctor = JsonConvert.SerializeObject(obj, Formatting.Indented);
+            //DEBEMOS CONVERTIR EL STRING A BYTE[]
+            byte[] bufferdoctor = Encoding.UTF8.GetBytes(jsondoctor);
+            //PARA PODER ENVIAR OBJETOS A NUESTRO SERVICIO SE UTILIZA UN TONTEN. 
+            //EN XAMARIN ES UN ByteArrayContent
+
+            ByteArrayContent content = new ByteArrayContent(bufferdoctor);
+            content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+            Uri uri = new Uri(this.uriapi + peticion);
+
+            HttpResponseMessage response = await client.PostAsync(uri, content);
+
         }
 
 
