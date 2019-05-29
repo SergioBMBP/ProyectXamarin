@@ -4,14 +4,18 @@
              xmlns:local="clr-namespace:ProyectXamarin"
              BindingContext="{Binding Source={x:Static local:App.Locator}, Path=UsuarioViewModel}"
              x:Class="ProyectXamarin.Views.LoginView">
+    <ContentPage.BackgroundColor >
+        <OnPlatform Android="White"/>
+    </ContentPage.BackgroundColor>
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Inicio de sesión" HorizontalOptions="CenterAndExpand" />
-            <Label Text="Usuario"/>
-            <Entry Text="{Binding Usuario.Nombre}" />
-            <Label Text="Password" />
-            <Entry  Text="{Binding Usuario.Password}" />
-            <Button Text="Iniciar Sesión" Command="{Binding Login}" BackgroundColor="Green" TextColor="White" HorizontalOptions="CenterAndExpand"/>
-        </StackLayout> 
+            <Label Text="Inicio de sesión" HorizontalOptions="CenterAndExpand" Grid.Column="0" Grid.Row="0" FontSize="25" Margin="0,30,0,0" />
+            <Image Source="loginIcon.png" Margin="0,20,0,0" HeightRequest="120"/>
+            <Label Text="Usuario"  Margin="20,40,20,0" />
+            <Entry Text="{Binding Usuario.Nombre}"  Margin="20,0,20,0"/>
+            <Label Text="Password" Margin="20,0,20,0" />
+            <Entry  Text="{Binding Usuario.Password}" IsPassword="True" Margin="20,0,20,0"/>
+            <Button Text="Iniciar Sesión" Command="{Binding Login}" BackgroundColor="Green" TextColor="White" HorizontalOptions="FillAndExpand" Margin="20,90,20,0" />
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

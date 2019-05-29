@@ -19,7 +19,7 @@ namespace ProyectXamarin.Views
         {
             InitializeComponent();
 
-            Detail = new NavigationPage((Page)Activator.CreateInstance(typeof(ListaArticulosView))) ;
+            Detail = new NavigationPage((Page)Activator.CreateInstance(typeof(HomeView))) ;
             IsPresented = false;
 
             this.lsvmenu.ItemSelected += ListView_ItemSelected;
