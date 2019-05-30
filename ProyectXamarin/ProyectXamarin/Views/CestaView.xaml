@@ -3,26 +3,54 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:ProyectXamarin"
              BindingContext="{Binding Source={x:Static local:App.Locator}, Path=CestaViewModel}"
+             x:Name="vistaCesta"
              x:Class="ProyectXamarin.Views.CestaView">
     <ContentPage.Content>
+
         <StackLayout>
-            <Label Text="Mi cesta" HorizontalOptions="CenterAndExpand" />
-            <ListView ItemsSource="{Binding Cesta}">
+            <Label Text="Mi cesta" HorizontalOptions="CenterAndExpand" Margin="0,30,0,0" FontSize="25" TextColor="Black" />
+            <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="LightGray" />
+            <ListView ItemsSource="{Binding Cesta}" HasUnevenRows="True"  >
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <ViewCell>
-                            <StackLayout Orientation="Horizontal">
-                                <Image Source="{Binding Imagen}" />
-                                <Label Text="{Binding Nombre}" />
-                                <Label Text="{Binding Marca}" />
-                                <Label Text="{Binding CantidadCesta}" />
-                                <Label Text="{Binding Precio}" />
+                        <ViewCell Height="160">
+                            <StackLayout Orientation="Horizontal" >
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="100"/>
+                                        <RowDefinition Height="40"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Source="{Binding Imagen}" Grid.Row="0" Grid.Column="0" VerticalOptions="FillAndExpand" HorizontalOptions="Fill"/>
+                                    <Grid Grid.Row="0" Grid.Column="1">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="20" />
+                                            <RowDefinition Height="20" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Label Text="{Binding Nombre}" Grid.Row="0" Grid.Column="0" HorizontalOptions="CenterAndExpand"  TextColor="Black"/>
+                                        <Label Text="{Binding Tipo}" Grid.Row="1" Grid.Column="0" HorizontalOptions="CenterAndExpand" TextColor="Gray"/>
+                                        <Label Text="{Binding Marca}" Grid.Row="1" Grid.Column="1" HorizontalOptions="CenterAndExpand"/>
+                                        
+                                    </Grid>
+                                    <Label Text="{Binding CantidadCesta, StringFormat='Cantidad: {0}'}" Grid.Row="1" Grid.Column="0" HorizontalOptions="CenterAndExpand" />
+                                    <Label Text="{Binding Precio, StringFormat=' {0} €'}" Grid.Row="1" Grid.Column="1" HorizontalOptions="CenterAndExpand" TextColor="Black" />
+                                    <Button HeightRequest="13" Text="Eliminar" BackgroundColor="Red" FontSize="10" TextColor="White" Grid.Row="1" Grid.Column="2" CommandParameter="{Binding .}" Command="{Binding BindingContext.EliminarArticuloCesta, Source={x:Reference vistaCesta}}" Margin="15,0,15,10"  />
+                                </Grid>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <Button Text="Realizar pedido" BackgroundColor="Green" TextColor="White" Command="{Binding RealizarPedido}" />
+
+            <Button Text="Realizar pedido" BackgroundColor="Green" TextColor="White" Command="{Binding RealizarPedido}"  Margin="25,0,25,20" IsEnabled="{Binding buttonEnable}" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
