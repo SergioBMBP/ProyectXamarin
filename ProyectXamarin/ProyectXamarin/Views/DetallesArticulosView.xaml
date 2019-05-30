@@ -3,58 +3,66 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                xmlns:viewmodels="clr-namespace:ProyectXamarin.ViewModels"
              x:Class="ProyectXamarin.Views.DetallesArticulosView">
- 
-    <Grid BackgroundColor="Gray">
-        <!--DEFINIR LAS FILAS O LAS COLUMNAS-->
-        <Grid.RowDefinitions>
-            <RowDefinition Height="180"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="200"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="*"/>
+    <ScrollView>
 
+        <Frame BackgroundColor="DarkGray" >
+            <Grid Margin="15" BackgroundColor="White">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="250" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100*"/>
+                </Grid.ColumnDefinitions>
+                
+                <StackLayout  Grid.Row="0" Grid.Column="0" >
+                    <Image HorizontalOptions="FillAndExpand" HeightRequest="250" 
+                          Source="{Binding Articulo.Imagen }" />
+                </StackLayout>
+                
+                
+                <Grid Margin="2,2,2,2" Grid.Row="1" Grid.Column="0">
+                    <Grid.RowDefinitions>
 
-        </Grid.RowDefinitions>
-        <!--CONTENIDO DEL GRID-->
-        <StackLayout Grid.Row="0" Orientation="Vertical" >
-            
-            <Image HorizontalOptions="FillAndExpand"
-                           HeightRequest="200" Source="{Binding Articulo.Imagen }"/>
-        </StackLayout>
-        <Grid Grid.Row="1"  >
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <StackLayout Grid.Column="0">
-                <Label Text="{Binding Articulo.Nombre }" FontSize="15" VerticalOptions="CenterAndExpand" TextColor="White" HorizontalOptions="Center"/>
-            </StackLayout>
-            <StackLayout Grid.Column="1">
-                <Label Text="{Binding Articulo.Precio }" FontSize="15" VerticalOptions="CenterAndExpand" TextColor="White" HorizontalOptions="Center"/>
-            </StackLayout>
-        </Grid>
+                        <RowDefinition Height="15*" />
+                        <RowDefinition Height="65*" />
+                        <RowDefinition Height="20*" />
+                    </Grid.RowDefinitions>
+                    
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="65*"/>
+                            <ColumnDefinition Width="15*"/>
+                            <ColumnDefinition Width="20*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Text="{Binding Articulo.Nombre }" Grid.Column="0" TextColor="Black" />
+                        <Label Text="Precio:" Grid.Column="1"   TextColor="Black"/>
+                        <Label Text="{Binding Articulo.Precio }" Grid.Column="2"  TextColor="Black" />
+                    </Grid>
 
-         <Grid Grid.Row="2" BackgroundColor="Aqua">
-            <StackLayout  Orientation="Horizontal">
-                <Label Text="{Binding Articulo.Descripcion }" FontSize="15" VerticalOptions="CenterAndExpand" TextColor="White" HorizontalOptions="CenterAndExpand"/>
-            </StackLayout>
-        </Grid>
-        <Grid Grid.Row="3" >
-            <StackLayout  Orientation="Horizontal">
-                <Stepper x:Name="controlstepper1" Increment="1" Minimum="0" Maximum="{Binding Articulo.Cantidad}" VerticalOptions="CenterAndExpand"/>
-                <Label x:Name="lblvalor1" Text="0" FontSize="Large" VerticalOptions="CenterAndExpand"/>
-            </StackLayout>
-        </Grid>
-        <Grid Grid.Row="4" >
-            <StackLayout  Orientation="Horizontal">
-                <Button Text="Añadir al carrito" Command="{Binding InsertarPedido}" BackgroundColor="Green" TextColor="White" HorizontalOptions="CenterAndExpand"/>
-              
-            </StackLayout>
-        </Grid>
+                    <ScrollView Grid.Row="1" VerticalOptions="FillAndExpand" >
+                        <Label Text="{Binding Articulo.Descripcion}"  TextColor="Black"/>
+                    </ScrollView>
+                    
+                    <Grid Grid.Row="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50*"/>
+                            <ColumnDefinition Width="15*"/>
+                            <ColumnDefinition Width="35*"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <Stepper x:Name="controlstepper1" Grid.Row="0" Grid.Column="0" Increment="1" Minimum="1" Maximum="{Binding Articulo.Cantidad}" Value="{Binding CantidadCesta}" />
+                        <Label Text="{Binding CantidadCesta}" Grid.Row="0" Grid.Column="1" TextColor="Black" FontSize="Large" HorizontalOptions="Center"/>
+                        <Button Text="Añadir al carrito" Grid.Row="0" Grid.Column="2" Command="{Binding AddToCesta}" TextColor="Black"  BackgroundColor="LightGreen" />
 
-    </Grid>
+                    </Grid>
 
+                </Grid>
 
-
+            </Grid>
+        </Frame>
+    </ScrollView>
 </ContentPage>

@@ -20,7 +20,7 @@ namespace ProyectXamarin.Views
         private void OnValueChanged1(object sender, ValueChangedEventArgs e)
         {
 
-            this.lblvalor1.Text = e.NewValue.ToString();
+           
         }
     }
 }

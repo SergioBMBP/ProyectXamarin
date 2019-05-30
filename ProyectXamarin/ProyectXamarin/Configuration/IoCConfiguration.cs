@@ -18,6 +18,7 @@ namespace ProyectXamarin.Configuration
             builder.RegisterType<MasterPageItemViewModel>();
             builder.RegisterType<UsuarioViewModel>();
             builder.RegisterType<AticulosViewmodel>();
+            builder.RegisterType<CestaViewModel>();
 
 
             //Hasta aqui
@@ -45,6 +46,10 @@ namespace ProyectXamarin.Configuration
             get { return this.Container.Resolve<MasterPageItemViewModel>(); }
         }
 
+        public CestaViewModel CestaViewModel
+        {
+            get { return this.Container.Resolve<CestaViewModel>(); }
+        }
 
     }
 }

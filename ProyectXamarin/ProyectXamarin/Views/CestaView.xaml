@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:ProyectXamarin"
+             BindingContext="{Binding Source={x:Static local:App.Locator}, Path=CestaViewModel}"
+             x:Class="ProyectXamarin.Views.CestaView">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Mi cesta" HorizontalOptions="CenterAndExpand" />
+            <ListView ItemsSource="{Binding Cesta}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal">
+                                <Image Source="{Binding Imagen}" />
+                                <Label Text="{Binding Nombre}" />
+                                <Label Text="{Binding Marca}" />
+                                <Label Text="{Binding CantidadCesta}" />
+                                <Label Text="{Binding Precio}" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Button Text="Realizar pedido" BackgroundColor="Green" TextColor="White" Command="{Binding RealizarPedido}" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
