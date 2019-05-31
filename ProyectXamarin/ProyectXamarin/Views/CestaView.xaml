@@ -42,7 +42,7 @@
                                     </Grid>
                                     <Label Text="{Binding CantidadCesta, StringFormat='Cantidad: {0}'}" Grid.Row="1" Grid.Column="0" HorizontalOptions="CenterAndExpand" />
                                     <Label Text="{Binding Precio, StringFormat=' {0} €'}" Grid.Row="1" Grid.Column="1" HorizontalOptions="CenterAndExpand" TextColor="Black" />
-                                    <Button HeightRequest="13" Text="Eliminar" BackgroundColor="Red" FontSize="10" TextColor="White" Grid.Row="1" Grid.Column="2" CommandParameter="{Binding .}" Command="{Binding BindingContext.EliminarArticuloCesta, Source={x:Reference vistaCesta}}" Margin="15,0,15,10"  />
+                                    <Button HeightRequest="13" Text="Eliminar" BackgroundColor="Red" FontSize="11" TextColor="White" Grid.Row="1" Grid.Column="2" CommandParameter="{Binding .}" Command="{Binding BindingContext.EliminarArticuloCesta, Source={x:Reference vistaCesta}}" Margin="15,0,15,10"  />
                                 </Grid>
                             </StackLayout>
                         </ViewCell>
