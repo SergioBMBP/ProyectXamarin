@@ -1,6 +1,7 @@
 ﻿using ProyectXamarin.Base;
 using ProyectXamarin.Models;
 using ProyectXamarin.Repositories;
+using ProyectXamarin.Tools;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -11,25 +12,41 @@ namespace ProyectXamarin.ViewModels
 {
     public class PedidosViewModel:ViewModelBase
     {
-        IRepositoryPedidos repo;
+        IRepositoryPedidos repoP;
+        IRepositoryUsuarios repoU;
+        StorageSession session;
         public PedidosViewModel()
         {
-            this.repo = new RepositoryPedidos();
-            Task.Run(async () => {
-                await CargarArticulos();
+            this.repoP = new RepositoryPedidos();
+            this.session = new StorageSession();
+            this.repoU = new RepositoryUsuarios();
+
+            Task.Run(async()=> {
+                await CargarPedidos();
             });
+
+        }
+        
+
+
+        private async Task CargarPedidos()
+        {
+            Usuarios user =await session.GetStorageUser();
+
+            if (user!=null)
+            {
+                Usuarios userStoraged = await this.session.GetStorageUser();
+                Pedidos = new ObservableCollection<Pedidos>(await repoP.GetPedidosUsuario(user.Id));
+            }
+
+            
         }
 
-        private async Task CargarArticulos()
+        private ObservableCollection<Pedidos> _Pedidos;
+        public ObservableCollection<Pedidos> Pedidos
         {
-            Articulos = new ObservableCollection<Pedidos>(await repo.GetPedidos());
-        }
-
-        private ObservableCollection<Pedidos> _Articulos;
-        public ObservableCollection<Pedidos> Articulos
-        {
-            get { return _Articulos; }
-            set { this._Articulos = value; OnPropertyChanged("Pedidos"); }
+            get { return _Pedidos; }
+            set { this._Pedidos = value; OnPropertyChanged("Pedidos"); }
         }
     }
 }
