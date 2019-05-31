@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace ProyectXamarin.ViewModels
+namespace ProyectXamarin.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class DetallesPedidosView : ContentPage
