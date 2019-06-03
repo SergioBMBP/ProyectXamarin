@@ -16,6 +16,9 @@
                         <ViewCell Height="160">
                             <StackLayout Orientation="Horizontal" >
                                 <Grid>
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding BindingContext.MostrarDetalles, Source={x:Reference vistaCesta}}" CommandParameter="{Binding .}" />
+                                    </Grid.GestureRecognizers>
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="100"/>
                                         <RowDefinition Height="40"/>
@@ -42,6 +45,7 @@
                                     </Grid>
                                     <Label Text="{Binding CantidadCesta, StringFormat='Cantidad: {0}'}" Grid.Row="1" Grid.Column="0" HorizontalOptions="CenterAndExpand" />
                                     <Label Text="{Binding Precio, StringFormat=' {0} €'}" Grid.Row="1" Grid.Column="1" HorizontalOptions="CenterAndExpand" TextColor="Black" />
+                                    
                                     <Button HeightRequest="13" Text="Eliminar" BackgroundColor="Red" FontSize="11" TextColor="White" Grid.Row="1" Grid.Column="2" CommandParameter="{Binding .}" Command="{Binding BindingContext.EliminarArticuloCesta, Source={x:Reference vistaCesta}}" Margin="15,0,15,10"  />
                                 </Grid>
                             </StackLayout>
@@ -49,7 +53,7 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-
+            <Label Text="{Binding PrecioTotal, StringFormat='Precio total: {0} €' }" HorizontalOptions="EndAndExpand" FontSize="20" TextColor="Black" />
             <Button Text="Realizar pedido" BackgroundColor="Green" TextColor="White" Command="{Binding RealizarPedido}"  Margin="25,0,25,20" IsEnabled="{Binding buttonEnable}" />
         </StackLayout>
     </ContentPage.Content>

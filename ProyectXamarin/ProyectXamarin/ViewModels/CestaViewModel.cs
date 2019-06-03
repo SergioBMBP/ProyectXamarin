@@ -2,6 +2,7 @@
 using ProyectXamarin.Models;
 using ProyectXamarin.Repositories;
 using ProyectXamarin.Services;
+using ProyectXamarin.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -16,16 +17,8 @@ namespace ProyectXamarin.ViewModels
         
         public CestaViewModel()
         {
-            if(App.Locator.SessionService.Cesta.Count > 0)
-            {
-                List<Articulos> lista = App.Locator.SessionService.Cesta;
-                this.Cesta = new ObservableCollection<Articulos>(lista);
-                this.buttonEnable = true;
-            } else
-            {
-                this.buttonEnable = false;
-            }
-            
+
+            this.CargarCesta();
             this.repo = new RepositoryPedidos();
         }
 
@@ -44,6 +37,15 @@ namespace ProyectXamarin.ViewModels
         }
 
 
+        private int _PrecioTotal;
+        public int PrecioTotal
+        {
+            get { return this._PrecioTotal; }
+            set
+            {
+                this._PrecioTotal = value; OnPropertyChanged("PrecioTotal");
+            }
+        }
 
         public Command RealizarPedido
         {
@@ -71,11 +73,65 @@ namespace ProyectXamarin.ViewModels
                     App.Locator.SessionService.Cesta.RemoveAt(index);
                     List<Articulos> articulos = App.Locator.SessionService.Cesta;
                     this.Cesta = new ObservableCollection<Articulos>(articulos);
-                    if(articulos.Count <= 0)
+                    
+                    if (articulos.Count <= 0)
                     {
+                        this.PrecioTotal = 0;
                         this.buttonEnable = false;
+                    } else
+                    {
+                        SumarPrecio();
                     }
                 });
+            }
+        }
+
+        public Command MostrarDetalles
+        {
+            get
+            {
+                return new Command(async (articulo) =>
+                {
+                    DetallesArticulosView view = new DetallesArticulosView();
+                    ArticuloViewModel viewmodel = new ArticuloViewModel();
+                    Articulos art = articulo as Articulos;
+
+                    viewmodel.Articulo = art;
+               
+                    view.BindingContext = viewmodel;
+                    await Application.Current.MainPage.Navigation.PushModalAsync(view);
+                    MessagingCenter.Subscribe<CestaViewModel>(this, "UPDATE", async (sender) => {
+                        this.CargarCesta();
+                    });
+
+            });
+            }
+        }
+
+        private void CargarCesta()
+        {
+            if (App.Locator.SessionService.Cesta.Count > 0)
+            {
+                List<Articulos> lista = App.Locator.SessionService.Cesta;
+                this.Cesta = new ObservableCollection<Articulos>(lista);
+                this.buttonEnable = true;
+                SumarPrecio();
+            }
+            else
+            {
+                this.buttonEnable = false;
+            }
+        }
+
+
+        private void SumarPrecio()
+        {
+            int multiplicacion = 0;
+            this.PrecioTotal = 0;
+            foreach (Articulos articulo in this.Cesta)
+            {
+                multiplicacion = articulo.CantidadCesta * articulo.Precio;
+                this.PrecioTotal += multiplicacion;
             }
         }
     }

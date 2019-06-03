@@ -32,6 +32,8 @@ namespace ProyectXamarin.ViewModels
             set { this._ValorCantidad = value; OnPropertyChanged("ValorCantidad"); }
         }
 
+       
+
         public Command AddToCesta
         {
             get {
@@ -48,7 +50,8 @@ namespace ProyectXamarin.ViewModels
                         App.Locator.SessionService.Cesta.Add(this.Articulo);
 
                     }
-                    
+                    MessagingCenter.Send<CestaViewModel>(App.Locator.CestaViewModel, "UPDATE");
+                    App.Current.MainPage.Navigation.PopModalAsync();
                 });
             }
         }
