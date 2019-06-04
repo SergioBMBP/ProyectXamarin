@@ -1,12 +1,33 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:viewmodels="clr-namespace:ProyectXamarin.ViewModels"
              x:Class="ProyectXamarin.Views.DetallesPedidosView">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout  Orientation="Horizontal">
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Text="{Binding Pedido.Id_Pedido}" HorizontalOptions="CenterAndExpand" Grid.Row="0"   Grid.Column="0"/>
+                <Label Text="{Binding Pedido.Fecha}" Grid.Row="0"  Grid.Column="1"/>
+                <Label Text="{Binding Pedido.Producto}" Grid.Row="0"  Grid.Column="2"/>
+                <Label Text="{Binding Pedido.Cantidad_Pedida}" Grid.Row="0"  Grid.Column="3"/>
+                <Label Text="{Binding Pedido.Id_Articulos}" Grid.Row="0"  Grid.Column="4"/>
+                <Label Text="{Binding Pedido.Id}" Grid.Row="0"  Grid.Column="5"/>
+             
+
+
+            </Grid>
+
         </StackLayout>
+
     </ContentPage.Content>
 </ContentPage>

@@ -19,6 +19,7 @@
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
+                                   
                                     <Label Text="{Binding Id_Pedido}" HorizontalOptions="CenterAndExpand" Grid.Row="0"   Grid.Column="0"/>
                                     <Label Text="{Binding Fecha}" Grid.Row="0"  Grid.Column="1"/>
                                     <StackLayout  Orientation="Horizontal">
