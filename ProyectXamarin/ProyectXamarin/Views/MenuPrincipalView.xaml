@@ -6,7 +6,7 @@
                   x:Class="ProyectXamarin.Views.MenuPrincipal"
                   
                   NavigationPage.HasNavigationBar="False">
-    
+
     <MasterDetailPage.ToolbarItems>
         <ToolbarItem Icon="carritocompra.png" Command="{Binding GoCesta}" />
     </MasterDetailPage.ToolbarItems>

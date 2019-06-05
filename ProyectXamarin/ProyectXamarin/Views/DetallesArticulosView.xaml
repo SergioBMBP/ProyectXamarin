@@ -54,8 +54,8 @@
                             <ColumnDefinition Width="35*"/>
                         </Grid.ColumnDefinitions>
                         
-                        <Stepper x:Name="controlstepper1" Grid.Row="0" Grid.Column="0" Increment="1" Minimum="1" Maximum="{Binding Articulo.Cantidad}" Value="{Binding CantidadCesta}" />
-                        <Label Text="{Binding CantidadCesta}" Grid.Row="0" Grid.Column="1" TextColor="Black" FontSize="Large" HorizontalOptions="Center"/>
+                        <Stepper x:Name="controlstepper1" Grid.Row="0" Grid.Column="0" Increment="1" Minimum="1" Maximum="{Binding Articulo.Cantidad}" Value="{Binding ValorCantidad}" />
+                        <Label Text="{Binding ValorCantidad}" Grid.Row="0" Grid.Column="1" TextColor="Black" FontSize="Large" HorizontalOptions="Center"/>
                         <Button Text="Añadir al carrito" Grid.Row="0" Grid.Column="2" Command="{Binding AddToCesta}" TextColor="Black"  BackgroundColor="LightGreen" />
 
                     </Grid>

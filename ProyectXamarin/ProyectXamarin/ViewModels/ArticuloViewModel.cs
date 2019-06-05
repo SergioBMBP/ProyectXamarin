@@ -22,16 +22,17 @@ namespace ProyectXamarin.ViewModels
         public Articulos Articulo
         {
             get { return _Articulo; }
-            set { this._Articulo = value; OnPropertyChanged("Articulo"); }
+            set { this._Articulo = value; this._ValorCantidad = this._Articulo.CantidadCesta; OnPropertyChanged("Articulo"); }
         }
 
-        private int _CantidadCesta = 1;
-
-        public int CantidadCesta
+        private int _ValorCantidad;
+        public int ValorCantidad
         {
-            get { return this._CantidadCesta; }
-            set { this._CantidadCesta = value; OnPropertyChanged("CantidadCesta"); }
+            get { return this._ValorCantidad; }
+            set { this._ValorCantidad = value; OnPropertyChanged("ValorCantidad"); }
         }
+
+       
 
         public Command AddToCesta
         {
@@ -42,13 +43,15 @@ namespace ProyectXamarin.ViewModels
                     if (App.Locator.SessionService.Cesta.Contains(this.Articulo))
                     {
                         int index = App.Locator.SessionService.Cesta.IndexOf(this.Articulo);
-                        App.Locator.SessionService.Cesta[index].CantidadCesta = CantidadCesta;
+                        App.Locator.SessionService.Cesta[index].CantidadCesta = ValorCantidad;
                     } else
                     {
-                        this.Articulo.CantidadCesta = CantidadCesta;
+                        this.Articulo.CantidadCesta = ValorCantidad;
                         App.Locator.SessionService.Cesta.Add(this.Articulo);
+
                     }
-                    
+                    MessagingCenter.Send<CestaViewModel>(App.Locator.CestaViewModel, "UPDATE");
+                    App.Current.MainPage.Navigation.PopModalAsync();
                 });
             }
         }

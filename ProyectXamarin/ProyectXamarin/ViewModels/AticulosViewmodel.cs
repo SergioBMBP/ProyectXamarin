@@ -19,6 +19,10 @@ namespace ProyectXamarin.ViewModels
             Task.Run(async () => {
                 await CargarArticulos();
             });
+            MessagingCenter.Subscribe<AticulosViewmodel>(this, "BUSCAR", async (sender) => {
+                List<Articulos> lista = await this.repo.GetArticulos(App.Locator.SessionService.busquedaMarca);
+                this.Articulos = new ObservableCollection<Articulos>(lista);
+            });
         }
         private async Task CargarArticulos()
         {
@@ -61,12 +65,21 @@ namespace ProyectXamarin.ViewModels
                 {
                     DetallesArticulosView view = new DetallesArticulosView();
                     ArticuloViewModel viewmodel = new ArticuloViewModel();
+                    Articulos art = articulo as Articulos;
 
-                    viewmodel.Articulo = articulo as Articulos;
+                    if (App.Locator.SessionService.Cesta.Contains(art))
+                    {
+                        int index = App.Locator.SessionService.Cesta.IndexOf(art);
+                        viewmodel.Articulo = App.Locator.SessionService.Cesta[index];
+                        viewmodel.ValorCantidad = App.Locator.SessionService.Cesta[index].CantidadCesta;
+                    }
+                    else
+                    {
+                        viewmodel.Articulo = articulo as Articulos;
+                    }
+                    
                     view.BindingContext = viewmodel;
-
-                    await Application.Current.MainPage.Navigation
-                    .PushModalAsync(view);
+                    await Application.Current.MainPage.Navigation.PushModalAsync(view);
                  
                 });
             }

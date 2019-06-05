@@ -15,6 +15,12 @@ namespace ProyectXamarin.Models
         public string Descripcion { get; set; }
         public string Imagen { get; set; }
         public string Marca { get; set; }
+
         public int CantidadCesta { get; set; }
+        public Articulos()
+        {
+            this.CantidadCesta = 1;
+        }
+
     }
 }
