@@ -57,10 +57,14 @@ namespace ProyectXamarin.ViewModels
             {
                 return new Command(async (pedido) =>
                 {
+                    String token = await session.GetStorageToken();
                     DetallesPedidosView view = new DetallesPedidosView();
                     PedidoViewModel viewmodel = new PedidoViewModel();
+                    Pedidos pedidos = pedido as Pedidos;
+                    viewmodel.Pedido = pedidos;
+                    List<VistaArticuloPedido> lista = await this.repoP.GetArticulosPedidos(pedidos.Id_Pedido, token);
+                    viewmodel.ArticulosPedido = new ObservableCollection<VistaArticuloPedido>(lista);
 
-                    viewmodel.Pedido = pedido as Pedidos;
                     view.BindingContext = viewmodel;
 
                     await Application.Current.MainPage.Navigation

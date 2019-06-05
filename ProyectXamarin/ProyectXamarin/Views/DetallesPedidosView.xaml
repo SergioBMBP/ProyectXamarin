@@ -2,31 +2,47 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
               xmlns:viewmodels="clr-namespace:ProyectXamarin.ViewModels"
+               xmlns:local="clr-namespace:ProyectXamarin"
+              BindingContext="{Binding Source={x:Static local:App.Locator}, Path=PedidoViewModel}"
              x:Class="ProyectXamarin.Views.DetallesPedidosView">
     <ContentPage.Content>
         <StackLayout  Orientation="Horizontal">
-            <Grid>
+            <ListView ItemsSource="{Binding ArticulosPedido}" HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell Height="70"  >
+                           
+                            <Grid Margin="0,10,0,10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="50*"/>
+                                    <RowDefinition  Height="50*" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="25*" />
+                                    <ColumnDefinition Width="45*" />
+                                    <ColumnDefinition Width="30*" />
+                                    
+                                </Grid.ColumnDefinitions>
 
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
+                                <Image Source="{Binding Imagen}"  HorizontalOptions="CenterAndExpand" Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" />
 
-                <Label Text="{Binding Pedido.Id_Pedido}" HorizontalOptions="CenterAndExpand" Grid.Row="0"   Grid.Column="0"/>
-                <Label Text="{Binding Pedido.Fecha}" Grid.Row="0"  Grid.Column="1"/>
-                <Label Text="{Binding Pedido.Producto}" Grid.Row="0"  Grid.Column="2"/>
-                <Label Text="{Binding Pedido.Cantidad_Pedida}" Grid.Row="0"  Grid.Column="3"/>
-                <Label Text="{Binding Pedido.Id_Articulos}" Grid.Row="0"  Grid.Column="4"/>
-                <Label Text="{Binding Pedido.Id}" Grid.Row="0"  Grid.Column="5"/>
-             
+                                <Label Text="{Binding Nombre}"   HorizontalOptions="CenterAndExpand" Grid.Row="0"   Grid.Column="1"/>
+
+                                <Label Text="{Binding Marca}"   HorizontalOptions="CenterAndExpand" Grid.Row="0"   Grid.Column="2"/>
 
 
-            </Grid>
+                                <Label Text="{Binding Cantidad, StringFormat='Cantidad: {0}'}"  HorizontalOptions="CenterAndExpand" Grid.Row="1"   Grid.Column="1" />
+                                <Label Text="{Binding Precio, StringFormat='Precio: {0}€'}"  HorizontalOptions="CenterAndExpand" Grid.Row="1"   Grid.Column="2" />
+                               
+                               
+                            </Grid>
+                            
 
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            
         </StackLayout>
 
     </ContentPage.Content>
