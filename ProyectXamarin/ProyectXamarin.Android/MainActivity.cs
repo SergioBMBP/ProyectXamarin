@@ -18,6 +18,14 @@ namespace ProyectXamarin.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(savedInstanceState);
+
+            if (Build.VERSION.SdkInt >= BuildVersionCodes.Lollipop)
+            {
+                Window.ClearFlags(WindowManagerFlags.TranslucentStatus);
+                Window.AddFlags(WindowManagerFlags.DrawsSystemBarBackgrounds);
+                Window.SetStatusBarColor(Android.Graphics.Color.Argb(255, 31, 78, 95));
+            }
+
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());
         }

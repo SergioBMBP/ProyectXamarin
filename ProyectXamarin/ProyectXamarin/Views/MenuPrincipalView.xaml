@@ -11,32 +11,34 @@
         <ToolbarItem Icon="carritocompra.png" Command="{Binding GoCesta}" />
     </MasterDetailPage.ToolbarItems>
     <MasterDetailPage.Master >
-        <ContentPage Title="COPY_ST_9"
-                   BackgroundColor="Gray">
+        <ContentPage Title="COPY ST 9" BackgroundColor="#1f4e5f">
             <StackLayout Orientation="Vertical">
-                <StackLayout BackgroundColor="CadetBlue" HeightRequest="95">
-                    <Label Text="COPY_ST_9" FontSize="20" VerticalOptions="CenterAndExpand" TextColor="White" HorizontalOptions="Center"/>
-                    <Image HorizontalOptions="FillAndExpand"
-                           HeightRequest="80" Source="champions.png"/>
-                    
+                <StackLayout BackgroundColor="#79a8a9" HeightRequest="140">
+                    <Label Text="COPY ST 9" FontSize="30" VerticalOptions="CenterAndExpand" Margin="0,30,0,0"  FontFamily="sans-serif" TextColor="White" HorizontalOptions="Center"/>
+                    <Label Text="{Binding Username,StringFormat='Bienvenido/a {0}'}" FontSize="20" TextColor="White" Margin="15,20,0,0" />
                 </StackLayout>
-                <StackLayout>
-                    <Label Text="{Binding Username}" FontSize="20" TextColor="White" />
-                </StackLayout>
-                <ListView x:Name="lsvmenu" RowHeight="60" SeparatorVisibility="None" BackgroundColor="#e8e8e8" ItemsSource="{Binding MasterPageItems}">
+                <ListView x:Name="lsvmenu" SeparatorVisibility="None" BackgroundColor="#f4f7f7" ItemsSource="{Binding MasterPageItems}" HasUnevenRows="True">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <StackLayout VerticalOptions="FillAndExpand" Orientation="Horizontal" Padding="20,10,0,10" Spacing="20">
-                                    <Label Text="{Binding Titulo}" FontSize="Medium" VerticalOptions="Center" TextColor="Black"/>
-                                </StackLayout>
+                                <Grid Margin="0,20,0,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="30"/>
+                                        <RowDefinition Height="1"/>
+                                    </Grid.RowDefinitions>
+                                    <Label Text="{Binding Titulo}" FontSize="20" Margin="15,0,0,0" TextColor="Black" Grid.Column="0" Grid.Row="0"/>
+                                    <BoxView HeightRequest="1" BackgroundColor="LightGray" WidthRequest="50" Margin="15,0,15,0" Grid.Column="0" Grid.Row="1" />
+                                </Grid>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
             </StackLayout>
         </ContentPage>
-      </MasterDetailPage.Master>
+    </MasterDetailPage.Master>
     <MasterDetailPage.Detail>
         <NavigationPage></NavigationPage>
     </MasterDetailPage.Detail>

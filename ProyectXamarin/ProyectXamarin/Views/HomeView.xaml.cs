@@ -50,7 +50,7 @@ namespace ProyectXamarin.Views
                     Button button = new Button
                     {
                         Text = marca,
-                        BackgroundColor = Color.FromHex("aacfd0"),
+                        BackgroundColor = Color.FromHex("1f4e5f"),
                         
                     };
                     button.Clicked += Button_Clicked;
