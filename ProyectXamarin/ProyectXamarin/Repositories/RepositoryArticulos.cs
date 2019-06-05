@@ -44,5 +44,12 @@ namespace ProyectXamarin.Repositories
             }
             return L;
         }
+
+        public async Task<List<String>> GetMarcas()
+        {
+            List<String> marca = await this.connect.CallApi<List<String>>("api/GetMarca", null);
+            
+            return marca;
+        }
     }
 }

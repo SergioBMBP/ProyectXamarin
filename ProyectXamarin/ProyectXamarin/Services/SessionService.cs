@@ -13,6 +13,7 @@ namespace ProyectXamarin.Services
         }
 
         public List<Articulos> Cesta { get; set; }
+        public String busquedaMarca { get; set; }
        
     }
 }
