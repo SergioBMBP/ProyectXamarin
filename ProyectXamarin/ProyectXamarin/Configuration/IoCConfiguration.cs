@@ -19,6 +19,8 @@ namespace ProyectXamarin.Configuration
             builder.RegisterType<UsuarioViewModel>();
             builder.RegisterType<AticulosViewmodel>();
             builder.RegisterType<CestaViewModel>();
+            builder.RegisterType<PedidosViewModel>();
+            builder.RegisterType<PedidoViewModel>();
 
 
             //Hasta aqui
@@ -50,6 +52,13 @@ namespace ProyectXamarin.Configuration
         {
             get { return this.Container.Resolve<CestaViewModel>(); }
         }
-
+        public PedidosViewModel PedidosViewModel
+        {
+            get { return this.Container.Resolve<PedidosViewModel>(); }
+        }
+        public PedidoViewModel PedidoViewModel
+        {
+            get { return this.Container.Resolve<PedidoViewModel>(); }
+        }
     }
 }

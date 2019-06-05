@@ -12,5 +12,6 @@ namespace ProyectXamarin.Repositories
         Task<List<Articulos>> GetArticulos(String marca);
         Task<List<Articulos>> GetLastArticulos();
         Task<Articulos> GetArticulo(int id);
+        Task<List<String>> GetMarcas();
     }
 }

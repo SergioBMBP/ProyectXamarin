@@ -4,7 +4,7 @@
              xmlns:controls="clr-namespace:Xamarin.Forms;assembly=Xamarin.Forms.CarouselView"
              xmlns:local="clr-namespace:ProyectXamarin"
               BindingContext="{Binding Source={x:Static local:App.Locator}, Path=ArticulosViewModel}"
-             BackgroundColor="AliceBlue"
+             BackgroundColor=" #aacfd0"
               x:Name="VistaHome"
              x:Class="ProyectXamarin.Views.HomeView">
     <ContentPage.Content>
@@ -47,7 +47,7 @@
                         </DataTemplate>
                     </controls:CarouselView.ItemTemplate>
                 </controls:CarouselView>
-                <Button BackgroundColor="AliceBlue" Text="Mas Productos" x:Name="btnmore"/>
+                <Button BackgroundColor=" #aacfd0" FontAttributes="Bold" Text="Mas Productos" x:Name="btnmore"/>
                 <Label  FontSize="Large" FontAttributes="Bold" TextColor="Black" Text="Articulos Canon"/>
                 <controls:CarouselView ItemsSource="{Binding ArticulosCanon}" HeightRequest="250">
                     <controls:CarouselView.ItemTemplate>
@@ -82,7 +82,12 @@
                         </DataTemplate>
                     </controls:CarouselView.ItemTemplate>
                 </controls:CarouselView>
-
+                <Label  FontSize="Large" FontAttributes="Bold" TextColor="Black" Text="Busqueda por Marcas"/>
+                <ScrollView Orientation="Horizontal" >
+                    <StackLayout Orientation="Horizontal" x:Name="scrollmarca">
+                        
+                    </StackLayout>
+                </ScrollView>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

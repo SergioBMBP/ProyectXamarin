@@ -1,10 +1,45 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:ProyectXamarin"
+              BindingContext="{Binding Source={x:Static local:App.Locator}, Path=PedidosViewModel}"
+              x:Name="VistaListaPedidos"
              x:Class="ProyectXamarin.Views.PedidosView">
   <ContentPage.Content>
       <StackLayout>
-          <Label Text="Pedidos" />
-      </StackLayout>
+            <ListView ItemsSource="{Binding Pedidos}" HasUnevenRows="true">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell Height="60" >
+                            <StackLayout>
+                                <Grid>
+                                   
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                   
+                                    <Label Text="{Binding Id_Pedido}" HorizontalOptions="CenterAndExpand" Grid.Row="0"   Grid.Column="0"/>
+                                    <Label Text="{Binding Fecha}" Grid.Row="0"  Grid.Column="1"/>
+                                    <StackLayout  Orientation="Horizontal">
+                                        <Image Source="flecha.jpg" Grid.Row="0"  Grid.Column="2">
+                                            <Image.GestureRecognizers>
+                                                <TapGestureRecognizer CommandParameter="{Binding .}" Command="{Binding BindingContext.DetallesPedidosView,Source={x:Reference VistaListaPedidos}}"/>
+                                            </Image.GestureRecognizers>
+                                        </Image>
+
+                                    </StackLayout>
+
+
+                                </Grid>
+
+
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
   </ContentPage.Content>
 </ContentPage>
