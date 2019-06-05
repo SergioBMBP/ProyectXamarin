@@ -55,7 +55,7 @@ namespace ProyectXamarin.Views
                     };
                     button.Clicked += Button_Clicked;
 
-                    ScrollMarca.Children.Add(button);
+                    this.scrollmarca.Children.Add(button);
 
                 }
 

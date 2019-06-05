@@ -84,7 +84,7 @@
                 </controls:CarouselView>
                 <Label  FontSize="Large" FontAttributes="Bold" TextColor="Black" Text="Busqueda por Marcas"/>
                 <ScrollView Orientation="Horizontal" >
-                    <StackLayout Orientation="Horizontal" x:Name="ScrollMarca">
+                    <StackLayout Orientation="Horizontal" x:Name="scrollmarca">
                         
                     </StackLayout>
                 </ScrollView>

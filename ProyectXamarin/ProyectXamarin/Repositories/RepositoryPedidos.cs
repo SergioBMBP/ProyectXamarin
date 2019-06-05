@@ -48,6 +48,16 @@ namespace ProyectXamarin.Repositories
             return num;
         }
 
+        public async  Task<List<Pedidos>> GetPedidosUsuario(int id,String token)
+        {
+            List<Pedidos> pedidos = await this.connect.CallApi<List<Pedidos>>("Api/BuscarPedido/"+id, token);
+            return pedidos;
+        }
 
+        public async Task<List<VistaArticuloPedido>> GetArticulosPedidos(int id, string token)
+        {
+            List<VistaArticuloPedido> pedidos = await this.connect.CallApi<List<VistaArticuloPedido>>("Api/BuscarArticulosPedidos/" + id, token);
+            return pedidos;
+        }
     }
 }
