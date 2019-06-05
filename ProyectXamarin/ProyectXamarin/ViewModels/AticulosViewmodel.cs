@@ -19,6 +19,10 @@ namespace ProyectXamarin.ViewModels
             Task.Run(async () => {
                 await CargarArticulos();
             });
+            MessagingCenter.Subscribe<AticulosViewmodel>(this, "BUSCAR", async (sender) => {
+                List<Articulos> lista = await this.repo.GetArticulos(App.Locator.SessionService.busquedaMarca);
+                this.Articulos = new ObservableCollection<Articulos>(lista);
+            });
         }
         private async Task CargarArticulos()
         {
