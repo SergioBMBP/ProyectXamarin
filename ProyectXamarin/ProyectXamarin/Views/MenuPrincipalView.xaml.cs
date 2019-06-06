@@ -19,7 +19,9 @@ namespace ProyectXamarin.Views
         {
             InitializeComponent();
 
-            Detail = new NavigationPage((Page)Activator.CreateInstance(typeof(HomeView))) ;
+            Detail = new NavigationPage((Page)Activator.CreateInstance(typeof(HomeView))) {
+                BarBackgroundColor = Color.FromHex("#79a8a9")
+            } ;
             IsPresented = false;
 
             this.lsvmenu.ItemSelected += ListView_ItemSelected;
@@ -34,20 +36,27 @@ namespace ProyectXamarin.Views
                 LoginView view = new LoginView();
                 await Application.Current.MainPage.Navigation.PushModalAsync(view);
             }
-            else if (item.Titulo == "Cerrar sesión" && item.PaginaHija == typeof(HomeView)) {
+            else if (item.Titulo == "Cerrar sesión" && item.PaginaHija == typeof(HomeView))
+            {
                 StorageSession session = new StorageSession();
                 session.RemoveAllStorage();
                 MessagingCenter.Send<MasterPageItemViewModel>(App.Locator.MasterPageItemViewModel, "LOGIN");
 
-                Detail = new NavigationPage((Page)Activator.CreateInstance(page));
+                Detail = new NavigationPage((Page)Activator.CreateInstance(page))
+                {
+                    BarBackgroundColor = Color.FromHex("#79a8a9")
+                };
                 IsPresented = false;
             }
             else
             {
-                Detail = new NavigationPage((Page)Activator.CreateInstance(page));
+                Detail = new NavigationPage((Page)Activator.CreateInstance(page))
+                {
+                    BarBackgroundColor = Color.FromHex("#79a8a9")
+                };
                 IsPresented = false;
             }
-            
+
 
 
         }
